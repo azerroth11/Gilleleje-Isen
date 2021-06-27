@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <script src="script.js" defer></script>
     <title>Shop</title>
   </head>
   <body>
@@ -32,16 +33,166 @@
         </li>
       </ul>
     </nav>
-    
+
     <section class="buy">
-      <div class="card medium">
-        <img src="./img/750ml.png" alt="" />
-        <h2>750ML HJEMMELAVET IS</h2>
+      <div class="card">
+        <!-- <h2>750ML HJEMMELAVET IS</h2>
         <h2><s>DKK 99,00</s></h2>
         <h2>DKK 89,00</h2>
-        <button>Select options</button>
-      </div>      
+        <a class="start medium">Pick & Select options</a> -->
+        <h1>Click & Collect</h1>
+        <img src="./img/750ml.png" alt="" />
+        <h2>HJEMMELAVET IS</h2>
+        <h2>Fra 89dkk</h2>
+        <a class="start large">Pick & Select options</a>
+      </div>
+      <div class="order hidden">
+        <div class="choice">
+          <h3>Vaelge storelse</h3>
+          <select name="size" id="size">
+            <option value="undefined">Pick a size</option>
+            <option value="medium">750ml - 89dkk</option>
+            <option value="large">1500ml - 152dkk</option>
+          </select>
+        </div>
+
+        <div id="choice1" class="choice hidden">
+          <h3>Smage</h3>
+          <select name="Smagsvariant" id="smagsvariant1">
+            <option value="undefined">Choose an option</option>
+            <option value="Vanilje">Vanilje</option>
+            <option value="Chokolade">Chokolade</option>
+            <option value="Koldskal">Koldskal</option>
+            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+            <option value="Lakrids-is">Lakrids-is</option>
+            <option value="Citrontaerte-is">Citrontaerte-is</option>
+            <option value="Saltkaramel">Saltkaramel</option>
+            <option value="Hasselnød-is">Hasselnød-is</option>
+            <option value="Aegte pistacie">Aegte pistacie</option>
+            <option value="Nougat">Nougat</option>
+            <option value="Kaffe-is">Kaffe-is</option>
+            <option value="Kokos-is">Kokos-is</option>
+            <option value="Mango/Passion-sorbet">Mango/Passion-sorbet</option>
+            <option value="Blodappelsin-sorbet">Blodappelsin-sorbet</option>
+            <option value="Jordbaer/Rabarber-sorbet">
+              Jordbaer/Rabarber-sorbet
+            </option>
+            <option value="Ananas-sorbet">Ananas-sorbet</option>
+          </select>
+        </div>
+
+        <div id="choice2" class="choice hidden">
+          <select name="Smagsvariant" id="smagsvariant1">
+            <option value="undefined">Choose an option</option>
+            <option value="Vanilje">Vanilje</option>
+            <option value="Chokolade">Chokolade</option>
+            <option value="Koldskal">Koldskal</option>
+            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+            <option value="Lakrids-is">Lakrids-is</option>
+            <option value="Citrontaerte-is">Citrontaerte-is</option>
+            <option value="Saltkaramel">Saltkaramel</option>
+            <option value="Hasselnød-is">Hasselnød-is</option>
+            <option value="Aegte pistacie">Aegte pistacie</option>
+            <option value="Nougat">Nougat</option>
+            <option value="Kaffe-is">Kaffe-is</option>
+            <option value="Kokos-is">Kokos-is</option>
+            <option value="Mango/Passion-sorbet">Mango/Passion-sorbet</option>
+            <option value="Blodappelsin-sorbet">Blodappelsin-sorbet</option>
+            <option value="Jordbaer/Rabarber-sorbet">
+              Jordbaer/Rabarber-sorbet
+            </option>
+            <option value="Ananas-sorbet">Ananas-sorbet</option>
+          </select>
+        </div>
+
+        <div id="choice3" class="choice hidden">
+          <select name="Smagsvariant" id="smagsvariant1">
+            <option value="undefined">Choose an option</option>
+            <option value="Vanilje">Vanilje</option>
+            <option value="Chokolade">Chokolade</option>
+            <option value="Koldskal">Koldskal</option>
+            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+            <option value="Lakrids-is">Lakrids-is</option>
+            <option value="Citrontaerte-is">Citrontaerte-is</option>
+            <option value="Saltkaramel">Saltkaramel</option>
+            <option value="Hasselnød-is">Hasselnød-is</option>
+            <option value="Aegte pistacie">Aegte pistacie</option>
+            <option value="Nougat">Nougat</option>
+            <option value="Kaffe-is">Kaffe-is</option>
+            <option value="Kokos-is">Kokos-is</option>
+            <option value="Mango/Passion-sorbet">Mango/Passion-sorbet</option>
+            <option value="Blodappelsin-sorbet">Blodappelsin-sorbet</option>
+            <option value="Jordbaer/Rabarber-sorbet">
+              Jordbaer/Rabarber-sorbet
+            </option>
+            <option value="Ananas-sorbet">Ananas-sorbet</option>
+          </select>
+        </div>
+
+        <div id="choice4" class="choice hidden">
+          <select name="Smagsvariant" id="smagsvariant1">
+            <option value="undefined">Choose an option</option>
+            <option value="Vanilje">Vanilje</option>
+            <option value="Chokolade">Chokolade</option>
+            <option value="Koldskal">Koldskal</option>
+            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+            <option value="Lakrids-is">Lakrids-is</option>
+            <option value="Citrontaerte-is">Citrontaerte-is</option>
+            <option value="Saltkaramel">Saltkaramel</option>
+            <option value="Hasselnød-is">Hasselnød-is</option>
+            <option value="Aegte pistacie">Aegte pistacie</option>
+            <option value="Nougat">Nougat</option>
+            <option value="Kaffe-is">Kaffe-is</option>
+            <option value="Kokos-is">Kokos-is</option>
+            <option value="Mango/Passion-sorbet">Mango/Passion-sorbet</option>
+            <option value="Blodappelsin-sorbet">Blodappelsin-sorbet</option>
+            <option value="Jordbaer/Rabarber-sorbet">
+              Jordbaer/Rabarber-sorbet
+            </option>
+            <option value="Ananas-sorbet">Ananas-sorbet</option>
+          </select>
+        </div>
+
+        <div id="choice5" class="choice hidden">
+          <select name="Smagsvariant" id="smagsvariant1">
+            <option value="undefined">Choose an option</option>
+            <option value="Vanilje">Vanilje</option>
+            <option value="Chokolade">Chokolade</option>
+            <option value="Koldskal">Koldskal</option>
+            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+            <option value="Lakrids-is">Lakrids-is</option>
+            <option value="Citrontaerte-is">Citrontaerte-is</option>
+            <option value="Saltkaramel">Saltkaramel</option>
+            <option value="Hasselnød-is">Hasselnød-is</option>
+            <option value="Aegte pistacie">Aegte pistacie</option>
+            <option value="Nougat">Nougat</option>
+            <option value="Kaffe-is">Kaffe-is</option>
+            <option value="Kokos-is">Kokos-is</option>
+            <option value="Mango/Passion-sorbet">Mango/Passion-sorbet</option>
+            <option value="Blodappelsin-sorbet">Blodappelsin-sorbet</option>
+            <option value="Jordbaer/Rabarber-sorbet">
+              Jordbaer/Rabarber-sorbet
+            </option>
+            <option value="Ananas-sorbet">Ananas-sorbet</option>
+          </select>
+        </div>
+
+        <div>
+          <h1 class="price"></h1>
+        </div>
+        <a id="next" href="#">Tilføj til kurv</a>
       </div>
     </section>
+
+    <footer>
+      <div class="adress">
+        <h3>Gilleleje-Isen</h3>
+        <p>ApS CVR: 42360740</p>
+        <p>Fiskerbakken 7, 3250 Gilleleje</p>
+      </div>
+      <a href="http://maps.apple.com/?daddr='Fiskerbakken+7+3250+Gilleleje'"
+        ><i class="fas fa-map-marked-alt"></i
+      ></a>
+    </footer>
   </body>
 </html>

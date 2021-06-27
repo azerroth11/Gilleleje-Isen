@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
+/* Commons */
 :root {
   --pink: hsl(352, 79%, 67%);
   --light-blue: hsl(202, 56%, 86%);
@@ -14,6 +15,8 @@
 }
 
 body {
+  width: 100vw;
+  background-color: var(--yellow);
   display: grid;
   font-family: "Lato", sans-serif;
 }
@@ -22,10 +25,15 @@ a {
   text-decoration: none;
 }
 
+.hidden {
+  visibility: hidden;
+  position: absolute;
+}
+
 /* Nav */
 nav {
-  padding: 0 1rem;
-  height: 75px;
+  padding: 0.25rem 1rem;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   background-color: var(--light-blue);
@@ -33,7 +41,7 @@ nav {
 
 nav img {
   cursor: pointer;
-  height: 74px;
+  height: 9vh;
 }
 
 nav ul {
@@ -59,12 +67,14 @@ nav ul li a {
   border-radius: 5px;
 }
 
-/* Main */
-.main {
+/* Hero */
+.hero {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   background: url("../img/background.jpg") no-repeat right top;
   background-size: cover;
+  display: grid;
+  place-items: center;
 }
 
 .sale {
@@ -72,12 +82,12 @@ nav ul li a {
   flex-direction: column;
   gap: 1rem;
   max-height: 400px;
-  margin: 50% 5vw;
-  transform: translateY(-25%);
+  max-width: 650px;
   border-radius: 50px;
   justify-self: center;
   color: #fff;
   padding: 1rem;
+  margin: auto 1rem;
   font-size: 1.2rem;
   text-align: center;
   cursor: pointer;
@@ -95,26 +105,27 @@ nav ul li a {
   font-size: 2.1rem;
 }
 
-/* Vores is */
-.vores-is {
-  padding: 0rem 2rem 2rem 2rem;
-  margin-top: -2rem;
+/* Vores is & Om os */
+.block {
+  padding: 2rem 2rem 4rem 2rem;
   background-color: var(--yellow);
   display: grid;
+  place-items: center;
   gap: 1rem;
 }
 
-.vores-is img {
-  max-width: 100%;
+.block img {
+  width: clamp(320px, 100%, 400px);
   border-radius: 5px;
   justify-self: center;
 }
 
-.vores-is p {
+.block p {
   font-size: 1.22rem;
+  max-width: 450px;
 }
 
-.vores-is a {
+.block a {
   justify-self: center;
   background-color: var(--pink);
   color: #fff;
@@ -128,26 +139,30 @@ nav ul li a {
 
 /* Shop */
 .buy {
-  min-height: 100vh;
   display: grid;
+  min-height: 75vh;
   place-items: center;
   gap: 2rem;
-  background: url("../img/background.jpg") no-repeat right top;
+  background-color: var(--light-blue);
 }
 
-.card {
+.card,
+.order {
   display: grid;
-  gap: 0.5rem;
-  max-width: 75%;
+  place-items: center;
+  gap: 1rem;
+  width: clamp(320px, 75%, 450px);
+  margin: 2.5vh 0;
   background: hsla(201, 46%, 64%, 0.5);
   border-radius: 15px;
   overflow: hidden;
   text-align: center;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .card h2 {
   color: hsl(53, 100%, 94%);
+  font-size: 1.4rem;
 }
 
 .card h2 s {
@@ -158,9 +173,35 @@ nav ul li a {
   max-width: 100%;
 }
 
+.start,
+#next {
+  padding: 0.5rem 1rem;
+  background-color: var(--yellow);
+  display: block;
+  cursor: pointer;
+  width: 200px;
+  border-radius: 5px;
+}
+
+select {
+  width: 175px;
+  padding: 0.5rem;
+}
+
+.choice h3 {
+  padding-bottom: 0.5rem;
+}
+
+.add-taste {
+  color: var(--pink);
+  font-size: 1.25rem;
+}
+
 /* Social */
 .social iframe {
-  width: clamp(375px, 100%, 600px);
+  width: clamp(320px, 100%, 500px);
+  margin: auto 50%;
+  transform: translateX(-50%);
   height: 640px;
 }
 
@@ -177,10 +218,19 @@ footer {
 .adress {
   display: grid;
   gap: 0.5rem;
+  padding-left: 10vw;
 }
 
 footer a {
   font-size: 2.5rem;
   color: var(--yellow);
   place-self: center;
+}
+
+@media screen and (min-width: 1000px) {
+  /* Main */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
