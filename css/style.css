@@ -127,10 +127,12 @@ nav ul li a {
 }
 
 /* Shop */
-.shop {
+.buy {
+  min-height: 100vh;
   display: grid;
   place-items: center;
   gap: 2rem;
+  background: url("../img/background.jpg") no-repeat right top;
 }
 
 .card {
@@ -152,7 +154,7 @@ nav ul li a {
   color: grey;
 }
 
-.shop img {
+.buy img {
   max-width: 100%;
 }
 
