@@ -8,6 +8,8 @@ const sizeCard = document.querySelector(".size-card")
 const basketCard = document.querySelector(".basket-card")
 const cart = document.querySelector(".shop")
 const add = document.querySelector("#add")
+const mediumBasket = document.querySelector(".medium-basket")
+const largeBasket = document.querySelector(".large-basket")
 
 start.addEventListener("click", e => {
   isCard.classList.toggle("hidden")
@@ -59,6 +61,16 @@ document.addEventListener("click", e => {
 })
 let { itemCount, h, totalPriceAmount, t } = init()
 
+// Reset form after submit
+function resetForm() {
+  const smagvariant = document.querySelectorAll(".select")
+  const select = Array.from(smagvariant)
+  select.forEach(e => {
+    e.value = "undefined"
+  })
+  priceH1.innerText = ""
+}
+
 // Event Listeners
 add.addEventListener("click", e => {
   const smagvariant1 = document.querySelector("#smagsvariant1").value
@@ -66,18 +78,18 @@ add.addEventListener("click", e => {
   const smagvariant3 = document.querySelector("#smagsvariant3").value
   const smagvariant4 = document.querySelector("#smagsvariant4").value
   const smagvariant5 = document.querySelector("#smagsvariant5").value
-  let itemList = document.querySelector(".list")
+  let emptyBasket = document.querySelector(".list")
   const itemCountEl = document.querySelector("#itemCount")
 
   if (size.value == "medium" && smagvariant1 !== "undefined") {
     const list = [smagvariant1, smagvariant2, smagvariant3]
     const mediumPrice = 89
     itemCountFn(itemCountEl)
-    itemListFn(itemList)
-    olList.appendChild(
-      document.createTextNode("750ml is: " + list + " (" + mediumPrice + "dkk)")
-    )
+    itemListFn(emptyBasket, list)
     totalPrice(mediumPrice)
+    mediumBasket.insertAdjacentElement("afterend", ulList)
+    mediumBasket.classList.remove("hidden")
+    resetForm()
   } else if (size.value == "large" && smagvariant1 !== "undefined") {
     const list = [
       smagvariant1,
@@ -88,11 +100,11 @@ add.addEventListener("click", e => {
     ]
     const largePrice = 152
     itemCountFn(itemCountEl)
-    itemListFn(itemList)
-    olList.appendChild(
-      document.createTextNode("1500ml is: " + list + " (" + largePrice + "dkk)")
-    )
+    itemListFn(emptyBasket, list)
+    largeBasket.insertAdjacentElement("afterend", ulList)
     totalPrice(largePrice)
+    largeBasket.classList.remove("hidden")
+    resetForm()
   } else {
     alert("You must pick a size and taste")
   }
@@ -105,10 +117,11 @@ cart.addEventListener("click", e => {
 })
 
 // Functions
-function itemListFn(itemList) {
-  itemList.classList.add("hidden")
-  olList = document.createElement("li")
-  basketCard.insertBefore(olList, h)
+function itemListFn(emptyBasket, list) {
+  emptyBasket.classList.add("hidden")
+  ulList = document.createElement("li")
+  filteredList = list.filter(e => e != "undefined")
+  ulList.appendChild(document.createTextNode(filteredList.join(" and ")))
 }
 
 function itemCountFn(itemCountEl) {
@@ -122,7 +135,7 @@ function init() {
   let h = document.createElement("H2")
   let t = document.createTextNode("")
   let btnBack = document.createElement("a")
-  btnBack.setAttribute("href", "shop.html")
+  btnBack.setAttribute("id", "btn-back")
   btnBack.innerHTML = "Add more!"
   btnBack.classList.add("start")
   let btnForth = document.createElement("a")
@@ -137,6 +150,12 @@ function init() {
 
 function totalPrice(price) {
   totalPriceAmount = totalPriceAmount + price
-  t.textContent = "Total price is: " + totalPriceAmount + "dkk"
+  t.textContent = "Total price: " + totalPriceAmount + "dkk"
   h.appendChild(t)
 }
+
+const btnBack = document.querySelector("#btn-back")
+btnBack.addEventListener("click", e => {
+  basketCard.classList.add("hidden")
+  sizeCard.classList.remove("hidden")
+})
