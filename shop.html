@@ -27,29 +27,25 @@
           ></a>
         </li>
         <li>
-          <a class="shop" href="shop.html"
-            ><i class="fas fa-shopping-cart"></i
+          <a class="shop" href="#"
+            ><i class="fas fa-shopping-cart"><span id="itemCount"></span></i
           ></a>
         </li>
       </ul>
     </nav>
 
     <section class="buy">
-      <div class="card">
-        <!-- <h2>750ML HJEMMELAVET IS</h2>
-        <h2><s>DKK 99,00</s></h2>
-        <h2>DKK 89,00</h2>
-        <a class="start medium">Pick & Select options</a> -->
+      <div class="card is-card">
         <h1>Click & Collect</h1>
         <img src="./img/750ml.png" alt="" />
         <h2>HJEMMELAVET IS</h2>
         <h2>Fra 89dkk</h2>
         <a class="start large">Pick & Select options</a>
       </div>
-      <div class="order hidden">
+      <div class="card size-card hidden">
         <div class="choice">
           <h3>Vaelge storelse</h3>
-          <select name="size" id="size">
+          <select name="size" id="size" class="select">
             <option value="undefined">Pick a size</option>
             <option value="medium">750ml - 89dkk</option>
             <option value="large">1500ml - 152dkk</option>
@@ -58,7 +54,7 @@
 
         <div id="choice1" class="choice hidden">
           <h3>Smage</h3>
-          <select name="Smagsvariant" id="smagsvariant1">
+          <select name="Smagsvariant" id="smagsvariant1" class="select">
             <option value="undefined">Choose an option</option>
             <option value="Vanilje">Vanilje</option>
             <option value="Chokolade">Chokolade</option>
@@ -82,7 +78,7 @@
         </div>
 
         <div id="choice2" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant1">
+          <select name="Smagsvariant" id="smagsvariant2" class="select">
             <option value="undefined">Choose an option</option>
             <option value="Vanilje">Vanilje</option>
             <option value="Chokolade">Chokolade</option>
@@ -106,7 +102,7 @@
         </div>
 
         <div id="choice3" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant1">
+          <select name="Smagsvariant" id="smagsvariant3" class="select">
             <option value="undefined">Choose an option</option>
             <option value="Vanilje">Vanilje</option>
             <option value="Chokolade">Chokolade</option>
@@ -130,7 +126,7 @@
         </div>
 
         <div id="choice4" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant1">
+          <select name="Smagsvariant" id="smagsvariant4" class="select">
             <option value="undefined">Choose an option</option>
             <option value="Vanilje">Vanilje</option>
             <option value="Chokolade">Chokolade</option>
@@ -154,7 +150,7 @@
         </div>
 
         <div id="choice5" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant1">
+          <select name="Smagsvariant" id="smagsvariant5" class="select">
             <option value="undefined">Choose an option</option>
             <option value="Vanilje">Vanilje</option>
             <option value="Chokolade">Chokolade</option>
@@ -178,9 +174,20 @@
         </div>
 
         <div>
-          <h1 class="price"></h1>
+          <h1 class="priceH1"></h1>
         </div>
-        <a id="next" href="#">Tilføj til kurv</a>
+        <a id="add" href="#">Tilføj til kurv</a>
+      </div>
+
+      <div class="card basket-card hidden">
+        <h1>Your current basket:</h1>
+        <p class="list">
+          Empty ! <br />
+          <br />
+          <a href="shop.html"
+            >Click here to start picking your next ice-cream</a
+          >
+        </p>
       </div>
     </section>
 

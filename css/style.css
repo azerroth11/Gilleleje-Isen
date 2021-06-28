@@ -4,7 +4,7 @@
 :root {
   --pink: hsl(352, 79%, 67%);
   --light-blue: hsl(202, 56%, 86%);
-  --dark-blue: hsl(201, 46%, 64%);
+  --dark-blue: hsl(196, 30%, 51%);
   --yellow: hsl(53, 100%, 94%);
 }
 
@@ -25,9 +25,14 @@ a {
   text-decoration: none;
 }
 
+/* Javascript */
 .hidden {
   visibility: hidden;
   position: absolute;
+}
+
+.undefined {
+  border: 2px solid var(--pink);
 }
 
 /* Nav */
@@ -140,14 +145,13 @@ nav ul li a {
 /* Shop */
 .buy {
   display: grid;
-  min-height: 75vh;
+  min-height: 78vh;
   place-items: center;
   gap: 2rem;
   background-color: var(--light-blue);
 }
 
-.card,
-.order {
+.card {
   display: grid;
   place-items: center;
   gap: 1rem;
@@ -174,18 +178,22 @@ nav ul li a {
 }
 
 .start,
-#next {
+#add {
   padding: 0.5rem 1rem;
   background-color: var(--yellow);
   display: block;
   cursor: pointer;
   width: 200px;
   border-radius: 5px;
+  color: var(--pink);
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 select {
-  width: 175px;
+  width: 200px;
   padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .choice h3 {
