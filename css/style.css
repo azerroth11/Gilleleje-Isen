@@ -16,6 +16,7 @@
 
 body {
   width: 100vw;
+  min-height: 100vh;
   background-color: var(--yellow);
   display: grid;
   font-family: "Lato", sans-serif;
@@ -37,7 +38,7 @@ a {
 
 /* Nav */
 nav {
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 2vw;
   height: 10vh;
   display: flex;
   justify-content: space-between;
@@ -153,7 +154,7 @@ nav ul li a {
 /* Shop */
 .buy {
   display: grid;
-  min-height: 78vh;
+  min-height: 81vh;
   place-items: center;
   gap: 2rem;
   background-color: var(--light-blue);
@@ -225,6 +226,7 @@ select {
 footer {
   display: grid;
   grid-template-columns: 3.5fr 1fr;
+  min-height: 8vh;
   padding: 1rem;
   line-height: 1rem;
   background-color: #000;
@@ -257,5 +259,9 @@ footer a {
     padding: 5rem;
     max-height: none;
     gap: 2.5rem;
+  }
+
+  .card {
+    scale: 1.1;
   }
 }
