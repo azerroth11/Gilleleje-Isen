@@ -6,6 +6,8 @@ const size = document.querySelector("#size")
 const isCard = document.querySelector(".is-card")
 const sizeCard = document.querySelector(".size-card")
 const basketCard = document.querySelector(".basket-card")
+const cart = document.querySelector(".shop")
+const add = document.querySelector("#add")
 
 start.addEventListener("click", e => {
   isCard.classList.toggle("hidden")
@@ -55,12 +57,9 @@ document.addEventListener("click", e => {
     }
   })
 })
+let { itemCount, h, totalPriceAmount, t } = init()
 
-// Tastes list generation
-const add = document.querySelector("#add")
-let itemCount = 0
-let totalPriceAmount = 0
-
+// Event Listeners
 add.addEventListener("click", e => {
   const smagvariant1 = document.querySelector("#smagsvariant1").value
   const smagvariant2 = document.querySelector("#smagsvariant2").value
@@ -73,14 +72,11 @@ add.addEventListener("click", e => {
   if (size.value == "medium" && smagvariant1 !== "undefined") {
     const list = [smagvariant1, smagvariant2, smagvariant3]
     const mediumPrice = 89
-    itemCount++
-    itemCountEl.textContent = " " + itemCount
-    itemList.classList.add("hidden")
-    olList = document.createElement("li")
+    itemCountFn(itemCountEl)
+    itemListFn(itemList)
     olList.appendChild(
       document.createTextNode("750ml is: " + list + " (" + mediumPrice + "dkk)")
     )
-    basketCard.insertBefore(olList, h)
     totalPrice(mediumPrice)
   } else if (size.value == "large" && smagvariant1 !== "undefined") {
     const list = [
@@ -91,46 +87,56 @@ add.addEventListener("click", e => {
       smagvariant5,
     ]
     const largePrice = 152
-    itemCount++
-    itemCountEl.textContent = " " + itemCount
-    itemList.classList.add("hidden")
-    olList = document.createElement("li")
+    itemCountFn(itemCountEl)
+    itemListFn(itemList)
     olList.appendChild(
       document.createTextNode("1500ml is: " + list + " (" + largePrice + "dkk)")
     )
-    basketCard.insertBefore(olList, h)
     totalPrice(largePrice)
   } else {
-    alert("You must pick a size")
+    alert("You must pick a size and taste")
   }
 })
 
-let h = document.createElement("H2")
-let t = document.createTextNode("")
-let btnBack = document.createElement("a")
-btnBack.setAttribute("href", "shop.html")
-btnBack.innerHTML = "Add more!"
-btnBack.classList.add("start")
-let btnForth = document.createElement("a")
-btnForth.setAttribute("href", "#")
-btnForth.innerHTML = "Proceed to checkout"
-btnForth.classList.add("start")
-basketCard.appendChild(h)
-basketCard.appendChild(btnBack)
-basketCard.appendChild(btnForth)
+cart.addEventListener("click", e => {
+  isCard.classList.add("hidden")
+  sizeCard.classList.add("hidden")
+  basketCard.classList.remove("hidden")
+})
+
+// Functions
+function itemListFn(itemList) {
+  itemList.classList.add("hidden")
+  olList = document.createElement("li")
+  basketCard.insertBefore(olList, h)
+}
+
+function itemCountFn(itemCountEl) {
+  itemCount++
+  itemCountEl.textContent = " " + itemCount
+}
+
+function init() {
+  let itemCount = 0
+  let totalPriceAmount = 0
+  let h = document.createElement("H2")
+  let t = document.createTextNode("")
+  let btnBack = document.createElement("a")
+  btnBack.setAttribute("href", "shop.html")
+  btnBack.innerHTML = "Add more!"
+  btnBack.classList.add("start")
+  let btnForth = document.createElement("a")
+  btnForth.setAttribute("href", "#")
+  btnForth.innerHTML = "Proceed to checkout"
+  btnForth.classList.add("start")
+  basketCard.appendChild(h)
+  basketCard.appendChild(btnBack)
+  basketCard.appendChild(btnForth)
+  return { itemCount, h, totalPriceAmount, t }
+}
 
 function totalPrice(price) {
   totalPriceAmount = totalPriceAmount + price
   t.textContent = "Total price is: " + totalPriceAmount + "dkk"
   h.appendChild(t)
 }
-
-const cart = document.querySelector(".shop")
-
-cart.addEventListener("click", e => {
-  isCard.classList.add("hidden")
-  sizeCard.classList.add("hidden")
-  basketCard.classList.remove("hidden")
-  if (cart.textContent != 0) {
-  }
-})
