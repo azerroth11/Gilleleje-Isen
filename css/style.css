@@ -86,23 +86,31 @@ nav ul li a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-height: 400px;
+  max-height: 450px;
   max-width: 650px;
   border-radius: 50px;
   justify-self: center;
   color: #fff;
-  padding: 1rem;
+  padding: 2rem 1rem;
   margin: auto 1rem;
   font-size: 1.2rem;
   text-align: center;
   cursor: pointer;
   text-shadow: 1px 1px 5px #000;
-  background-color: hsla(201, 46%, 64%, 0.651);
+  background-color: rgba(121, 176, 205, 0.8);
 }
 
 .sale-pink {
   color: var(--pink);
   text-shadow: 1px 1px 5px #fff;
+}
+
+.ybckgrd {
+  background-color: var(--yellow);
+  padding: 0.5rem;
+  width: 175px;
+  margin: 0 auto;
+  border-radius: 15px;
 }
 
 .sale span {
@@ -235,10 +243,19 @@ footer a {
   place-self: center;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 800px) {
   /* Main */
   .main {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-top: 8rem;
+    max-width: 1200px;
+    justify-self: center;
+  }
+
+  .sale {
+    padding: 5rem;
+    max-height: none;
+    gap: 2.5rem;
   }
 }
