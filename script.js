@@ -10,6 +10,7 @@ const cart = document.querySelector(".shop")
 const add = document.querySelector("#add")
 const mediumBasketList = document.querySelector(".medium-basket-list")
 const largeBasketList = document.querySelector(".large-basket-list")
+const btnForth = document.createElement("a")
 
 start.addEventListener("click", e => {
   isCard.classList.toggle("hidden")
@@ -60,7 +61,7 @@ document.addEventListener("click", e => {
   })
 })
 
-let { h, t } = init()
+init()
 
 // Reset form after submit
 function resetForm() {
@@ -74,32 +75,23 @@ function resetForm() {
 
 // Event Listeners
 add.addEventListener("click", e => {
-  const smagvariant1 = document.querySelector("#smagsvariant1").value
-  const smagvariant2 = document.querySelector("#smagsvariant2").value
-  const smagvariant3 = document.querySelector("#smagsvariant3").value
-  const smagvariant4 = document.querySelector("#smagsvariant4").value
-  const smagvariant5 = document.querySelector("#smagsvariant5").value
+  const list = [
+    (smagvariant1 = document.querySelector("#smagsvariant1").value),
+    (smagvariant2 = document.querySelector("#smagsvariant2").value),
+    (smagvariant3 = document.querySelector("#smagsvariant3").value),
+    (smagvariant4 = document.querySelector("#smagsvariant4").value),
+    (smagvariant5 = document.querySelector("#smagsvariant5").value),
+  ]
   let emptyBasket = document.querySelector(".list")
-
   if (size.value == "medium" && smagvariant1 !== "undefined") {
-    const list = [smagvariant1, smagvariant2, smagvariant3]
-    // itemCountFn(itemCountEl)
     itemListFn(emptyBasket, list)
     addMediumItemToList()
-    updatePrice()
+    updatePrice(btnForth)
     resetForm()
   } else if (size.value == "large" && smagvariant1 !== "undefined") {
-    const list = [
-      smagvariant1,
-      smagvariant2,
-      smagvariant3,
-      smagvariant4,
-      smagvariant5,
-    ]
-    // itemCountFn(itemCountEl)
     itemListFn(emptyBasket, list)
     addLargeItemToList()
-    updatePrice()
+    updatePrice(btnForth)
     resetForm()
   } else {
     alert("You must pick a size and taste")
@@ -114,7 +106,6 @@ cart.addEventListener("click", e => {
 
 function addMediumItemToList() {
   const mediumBasket = document.querySelector(".medium-basket")
-
   const mediumBasketListItem = document.createElement("li")
   mediumBasketList.appendChild(mediumBasketListItem)
   createRemoveBtn()
@@ -128,7 +119,6 @@ function addMediumItemToList() {
 
 function addLargeItemToList() {
   const largeBasket = document.querySelector(".large-basket")
-
   const largeBasketListItem = document.createElement("li")
   largeBasketList.appendChild(largeBasketListItem)
   createRemoveBtn()
@@ -140,7 +130,7 @@ function addLargeItemToList() {
   largeBasket.classList.remove("hidden")
 }
 
-function updatePrice() {
+function updatePrice(btnForth) {
   const mediumIcePrice = 89
   const largeIcePrice = 152
   const mediumPrice = mediumBasketList.childElementCount * mediumIcePrice
@@ -150,6 +140,7 @@ function updatePrice() {
     mediumBasketList.childElementCount + largeBasketList.childElementCount
   const itemCountEl = document.querySelector("#itemCount")
   itemCountEl.textContent = " " + itemCount
+  btnForth.innerHTML = `Checkout: ${totalPrice} dkk`
   console.log(totalPrice)
 }
 
@@ -169,34 +160,25 @@ function createRemoveBtn() {
     removeBtn.addEventListener("click", e => {
       removeBtn.parentNode.remove()
       removeBtn.remove(e)
-      updatePrice()
+      updatePrice(btnForth)
     })
   })
 }
 
-// Cart item counter
-// function itemCountFn(itemCountEl) {
-//   itemCount++
-//   itemCountEl.textContent = " " + itemCount
-// }
-
 // Init parameters
 function init() {
-  // let itemCount = 0
-  let h = document.createElement("H2")
-  let t = document.createTextNode("")
-  let btnBack = document.createElement("a")
+  const h = document.createElement("H2")
+  const t = document.createTextNode("")
+  const btnBack = document.createElement("a")
   btnBack.setAttribute("id", "btn-back")
   btnBack.innerHTML = "Add more!"
   btnBack.classList.add("start")
-  let btnForth = document.createElement("a")
   btnForth.setAttribute("href", "#")
-  btnForth.innerHTML = "Proceed to checkout"
+  // btnForth.innerHTML = `Checkout ${totalPrice}`
   btnForth.classList.add("start")
   basketCard.appendChild(h)
   basketCard.appendChild(btnBack)
   basketCard.appendChild(btnForth)
-  return { h, t }
 }
 
 const btnBack = document.querySelector("#btn-back")
