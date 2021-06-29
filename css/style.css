@@ -213,6 +213,12 @@ select {
   font-size: 1.25rem;
 }
 
+.fa-minus-circle {
+  color: var(--pink);
+  cursor: pointer;
+  padding-right: 0.5rem;
+}
+
 /* Social */
 .social iframe {
   width: clamp(320px, 100%, 500px);
