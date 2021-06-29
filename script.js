@@ -1,6 +1,6 @@
 let strict
 
-const iceOrder = document.querySelector(".start")
+const iceOrder = document.querySelector("#ice-order")
 const priceH1 = document.querySelector(".priceH1")
 const size = document.querySelector("#size")
 const isCard = document.querySelector(".is-card")
@@ -10,14 +10,22 @@ const cart = document.querySelector(".shop")
 const add = document.querySelector("#add")
 const mediumBasketList = document.querySelector(".medium-basket-list")
 const largeBasketList = document.querySelector(".large-basket-list")
-const btnForth = document.createElement("a")
+const btnCheckout = document.createElement("a")
 const mediumBasket = document.querySelector(".medium-basket")
 const largeBasket = document.querySelector(".large-basket")
 const emptyBasket = document.querySelector(".empty-basket")
+const formCard = document.querySelector(".form-card")
 
 iceOrder.addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
+})
+
+// WIP Form card
+btnCheckout.addEventListener("click", e => {
+  basketCard.classList.add("hidden")
+  formCard.classList.remove("hidden")
+  // sessionStorage.setItem("total", `${totalPrice.value}`)
 })
 
 // Display correct number of tastes options
@@ -88,11 +96,11 @@ add.addEventListener("click", e => {
   filterundefined(list)
   if (size.value == "medium" && filteredList.length != 0) {
     addMediumItemToList()
-    updatePrice(btnForth)
+    updatePrice(btnCheckout)
     resetForm()
   } else if (size.value == "large" && filteredList.length != 0) {
     addLargeItemToList()
-    updatePrice(btnForth)
+    updatePrice(btnCheckout)
     resetForm()
   } else {
     alert("You must pick a size and taste")
@@ -138,7 +146,7 @@ function addLargeItemToList() {
 }
 
 // Price Update
-function updatePrice(btnForth) {
+function updatePrice(btnCheckout) {
   const mediumIcePrice = 89
   const largeIcePrice = 152
   const mediumPrice = mediumBasketList.childElementCount * mediumIcePrice
@@ -148,12 +156,13 @@ function updatePrice(btnForth) {
     mediumBasketList.childElementCount + largeBasketList.childElementCount
   const itemCountEl = document.querySelector("#itemCount")
   itemCountEl.textContent = " " + itemCount
-  btnForth.innerHTML = `Checkout: ${totalPrice} dkk`
-  emptyItemList(mediumBasket, largeBasket, emptyBasket, btnForth)
+  btnCheckout.innerHTML = `Checkout: ${totalPrice} dkk`
+  emptyItemList(mediumBasket, largeBasket, emptyBasket, btnCheckout)
+  return { totalPrice }
 }
 
 // Visibility of items in cart
-function emptyItemList(mediumBasket, largeBasket, emptyBasket, btnForth) {
+function emptyItemList(mediumBasket, largeBasket, emptyBasket, btnCheckout) {
   if (mediumBasketList.childElementCount == 0) {
     mediumBasket.classList.add("hidden")
   }
@@ -165,10 +174,10 @@ function emptyItemList(mediumBasket, largeBasket, emptyBasket, btnForth) {
     largeBasketList.childElementCount == 0
   ) {
     emptyBasket.classList.remove("hidden")
-    btnForth.classList.add("hidden")
+    btnCheckout.classList.add("hidden")
   } else {
     emptyBasket.classList.add("hidden")
-    btnForth.classList.remove("hidden")
+    btnCheckout.classList.remove("hidden")
   }
 }
 
@@ -186,7 +195,7 @@ function createRemoveBtn() {
     removeBtn.addEventListener("click", e => {
       removeBtn.parentNode.remove()
       removeBtn.remove(e)
-      updatePrice(btnForth)
+      updatePrice(btnCheckout)
     })
   })
 }
@@ -199,15 +208,60 @@ function init() {
   btnBack.setAttribute("id", "btn-back")
   btnBack.innerHTML = "Add more!"
   btnBack.classList.add("start")
-  btnForth.setAttribute("href", "#")
-  btnForth.classList.add("start")
+  btnCheckout.setAttribute("id", "btnCheckout")
+  btnCheckout.classList.add("start")
   basketCard.appendChild(h)
   basketCard.appendChild(btnBack)
-  basketCard.appendChild(btnForth)
+  basketCard.appendChild(btnCheckout)
 }
 
 const btnBack = document.querySelector("#btn-back")
 btnBack.addEventListener("click", e => {
   basketCard.classList.add("hidden")
   sizeCard.classList.remove("hidden")
+})
+
+// Payment
+document.getElementById("pay").addEventListener("click", () => {
+  const apikey =
+    "4417:TFYlzvKYN5eAgehM7Oig+94MWl8Cv7ABdCQEBDQduBNxk0oEDw/dzY0Eh2ifnHuU"
+  const successURL = "https://azerroth11.github.io/Gilleleje-Isen/success.html"
+  const language = "da" // default is to use browser language
+
+  fetch("https://api.test.scanpay.dk/v1/new", {
+    method: "POST",
+    headers: {
+      Authorization: "Basic" + window.btoa(apikey),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      successurl: "https://azerroth11.github.io/Gilleleje-Isen/success.html",
+      language: "da", // default is 'auto', e.g. use browser language
+      orderid: "1",
+      items: [
+        {
+          name: "750ml: Vanilje, Chokolade, Lakrids",
+          quantity: 2,
+          total: "89 DKK",
+          sku: "7vcl",
+        },
+        {
+          name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
+          quantity: 1,
+          total: "152 DKK",
+          sku: "15kvclk",
+        },
+      ],
+    }),
+  })
+    .then(res => res.json())
+    .then(o => {
+      // https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
+      window.location.replace(o.url)
+    })
+    .catch(() => {
+      alert(
+        "Something went wrong. Please contact support to get a new payment link"
+      )
+    })
 })

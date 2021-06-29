@@ -11,7 +11,6 @@
     />
     <link rel="shortcut icon" type="image/jpg" href="./img/logo_9Cp_icon.ico" />
     <script src="script.js" defer></script>
-    <!-- <script src="scanpay.js" defer></script> -->
     <title>Shop</title>
   </head>
   <body>
@@ -42,7 +41,7 @@
         <img src="./img/750ml.png" alt="" />
         <h2>HJEMMELAVET IS</h2>
         <h2>Fra 89dkk</h2>
-        <a class="start large">Pick & Select options</a>
+        <a class="start large" id="ice-order">Pick & Select options</a>
       </div>
       <div class="card size-card hidden">
         <div class="choice">
@@ -182,12 +181,30 @@
       </div>
 
       <div class="card basket-card hidden">
-        <h1 >Your current basket:</h1>
+        <h1>Your current basket:</h1>
         <p class="empty-basket">Empty and sad !</p>
         <h2 class="medium-basket hidden">750ml (89dkk/u):</h2>
         <ol class="medium-basket-list"></ol>
         <h2 class="large-basket hidden">1500ml (152dkk/u):</h2>
         <ol class="large-basket-list"></ol>
+      </div>
+
+      <div class="card form-card hidden">
+        <form id="form">
+          <label for="fname">Navn<span>*</span></label>
+          <input id="fname" type="text" required />
+          <label for="lname">Last name<span>*</span></label>
+          <input id="lname" type="text" required />
+          <label for="company-name">Company name (optional)</label>
+          <input id="company-name" type="text" />
+          <label for="input-email">Email adress<span>*</span></label>
+          <input type="email" id="input-mail" required />
+          <label for="pickup-date">Pickup-date<span>*</span></label>
+          <input id="pickup-date" type="date" required />
+          <button id="pay" class="start" type="submit" value="submit">
+            Til betal
+          </button>
+        </form>
       </div>
     </section>
 

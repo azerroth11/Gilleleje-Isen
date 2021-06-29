@@ -63,6 +63,11 @@ nav ul li a {
   text-shadow: 1px 1px 3px #000;
 }
 
+.fa-instagram,
+.fa-facebook-square {
+  font-size: 1.8rem;
+}
+
 .shop {
   text-decoration: none;
   color: var(--pink);
@@ -240,13 +245,44 @@ select {
   border-radius: 5px;
 }
 
+/* Form */
+#form {
+  display: grid;
+  gap: 0.25rem;
+}
+
+#form label {
+  font-size: 1.2rem;
+}
+
+#form label span {
+  color: red;
+}
+
+#form input {
+  margin-bottom: 0.75rem;
+  border-radius: 5px;
+  padding: 0.25rem;
+  width: 200px;
+}
+
+#form input:active,
+#form input:focus {
+  outline: none;
+  border: 2px solid var(--pink);
+}
+
+#form button {
+  margin-top: 0.5rem;
+}
+
 /* Social */
-.social iframe {
+/* .social iframe {
   width: clamp(320px, 100%, 500px);
   margin: auto 50%;
   transform: translateX(-50%);
   height: 640px;
-}
+} */
 
 /* Footer */
 footer {
