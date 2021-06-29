@@ -1,6 +1,6 @@
 let strict
 
-const start = document.querySelector(".start")
+const iceOrder = document.querySelector(".start")
 const priceH1 = document.querySelector(".priceH1")
 const size = document.querySelector("#size")
 const isCard = document.querySelector(".is-card")
@@ -11,8 +11,11 @@ const add = document.querySelector("#add")
 const mediumBasketList = document.querySelector(".medium-basket-list")
 const largeBasketList = document.querySelector(".large-basket-list")
 const btnForth = document.createElement("a")
+const mediumBasket = document.querySelector(".medium-basket")
+const largeBasket = document.querySelector(".large-basket")
+const emptyBasket = document.querySelector(".empty-basket")
 
-start.addEventListener("click", e => {
+iceOrder.addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
 })
@@ -48,7 +51,7 @@ size.addEventListener("input", e => {
   }
 })
 
-// Verify if != undefined
+// Adds border to undefined items
 document.addEventListener("click", e => {
   const smagvariant = document.querySelectorAll(".select")
   const select = Array.from(smagvariant)
@@ -82,14 +85,12 @@ add.addEventListener("click", e => {
     (smagvariant4 = document.querySelector("#smagsvariant4").value),
     (smagvariant5 = document.querySelector("#smagsvariant5").value),
   ]
-  let emptyBasket = document.querySelector(".list")
-  if (size.value == "medium" && smagvariant1 !== "undefined") {
-    itemListFn(emptyBasket, list)
+  filterundefined(list)
+  if (size.value == "medium" && filteredList.length != 0) {
     addMediumItemToList()
     updatePrice(btnForth)
     resetForm()
-  } else if (size.value == "large" && smagvariant1 !== "undefined") {
-    itemListFn(emptyBasket, list)
+  } else if (size.value == "large" && filteredList.length != 0) {
     addLargeItemToList()
     updatePrice(btnForth)
     resetForm()
@@ -105,31 +106,38 @@ cart.addEventListener("click", e => {
 })
 
 function addMediumItemToList() {
-  const mediumBasket = document.querySelector(".medium-basket")
-  const mediumBasketListItem = document.createElement("li")
-  mediumBasketList.appendChild(mediumBasketListItem)
+  const mediumBasketul = document.createElement("ul")
+  mediumBasketList.appendChild(mediumBasketul)
+  mediumBasketul.classList.add("basket-list-items")
   createRemoveBtn()
-  mediumBasketListItem.appendChild(removeBtn)
-  mediumBasketListItem.appendChild(
-    document.createTextNode(filteredList.join(" and "))
-  )
+  mediumBasketul.appendChild(removeBtn)
+  filteredList.forEach(e => {
+    const listItems = document.createElement("li")
+    mediumBasketul.appendChild(listItems)
+    listItems.appendChild(document.createTextNode(e))
+  })
   mediumBasket.insertAdjacentElement("afterend", mediumBasketList)
   mediumBasket.classList.remove("hidden")
+  emptyBasket.classList.add("hidden")
 }
 
 function addLargeItemToList() {
-  const largeBasket = document.querySelector(".large-basket")
-  const largeBasketListItem = document.createElement("li")
-  largeBasketList.appendChild(largeBasketListItem)
+  const largeBasketul = document.createElement("ul")
+  largeBasketList.appendChild(largeBasketul)
+  largeBasketul.classList.add("basket-list-items")
   createRemoveBtn()
-  largeBasketListItem.appendChild(removeBtn)
-  largeBasketListItem.appendChild(
-    document.createTextNode(filteredList.join(" and "))
-  )
+  largeBasketul.appendChild(removeBtn)
+  filteredList.forEach(e => {
+    const listItems = document.createElement("li")
+    largeBasketul.appendChild(listItems)
+    listItems.appendChild(document.createTextNode(e))
+  })
   largeBasket.insertAdjacentElement("afterend", largeBasketList)
   largeBasket.classList.remove("hidden")
+  emptyBasket.classList.add("hidden")
 }
 
+// Price Update
 function updatePrice(btnForth) {
   const mediumIcePrice = 89
   const largeIcePrice = 152
@@ -141,12 +149,30 @@ function updatePrice(btnForth) {
   const itemCountEl = document.querySelector("#itemCount")
   itemCountEl.textContent = " " + itemCount
   btnForth.innerHTML = `Checkout: ${totalPrice} dkk`
-  console.log(totalPrice)
+  emptyItemList(mediumBasket, largeBasket, emptyBasket, btnForth)
 }
 
-function itemListFn(emptyBasket, list) {
-  emptyBasket.classList.add("hidden")
-  // Filter undefined items
+// Visibility of items in cart
+function emptyItemList(mediumBasket, largeBasket, emptyBasket, btnForth) {
+  if (mediumBasketList.childElementCount == 0) {
+    mediumBasket.classList.add("hidden")
+  }
+  if (largeBasketList.childElementCount == 0) {
+    largeBasket.classList.add("hidden")
+  }
+  if (
+    mediumBasketList.childElementCount == 0 &&
+    largeBasketList.childElementCount == 0
+  ) {
+    emptyBasket.classList.remove("hidden")
+    btnForth.classList.add("hidden")
+  } else {
+    emptyBasket.classList.add("hidden")
+    btnForth.classList.remove("hidden")
+  }
+}
+
+function filterundefined(list) {
   filteredList = list.filter(e => e != "undefined")
 }
 
@@ -174,7 +200,6 @@ function init() {
   btnBack.innerHTML = "Add more!"
   btnBack.classList.add("start")
   btnForth.setAttribute("href", "#")
-  // btnForth.innerHTML = `Checkout ${totalPrice}`
   btnForth.classList.add("start")
   basketCard.appendChild(h)
   basketCard.appendChild(btnBack)

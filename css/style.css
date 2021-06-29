@@ -170,6 +170,7 @@ nav ul li a {
   overflow: hidden;
   text-align: center;
   padding: 2rem;
+  overflow: none;
 }
 
 .card h2 {
@@ -217,10 +218,26 @@ select {
   color: var(--pink);
   cursor: pointer;
   padding-right: 0.5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -155px;
+  margin-top: -10px;
 }
 
-.basket-list {
-  padding-bottom: 0.5rem;
+.medium-basket-list,
+.large-basket-list {
+  width: 100%;
+}
+
+.basket-list-items {
+  position: relative;
+  background-color: var(--light-blue);
+  margin-bottom: 1.2rem;
+  padding: 0.75rem 0;
+  font-size: 1.2rem;
+  list-style: none;
+  border-radius: 5px;
 }
 
 /* Social */
