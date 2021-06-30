@@ -15,6 +15,8 @@ const btnCheckout = document.createElement("a")
 // Rest
 const orderList = []
 
+init()
+
 // Cards display
 iceOrder.addEventListener("click", e => {
   isCard.classList.toggle("hidden")
@@ -30,6 +32,13 @@ cartBtn.addEventListener("click", e => {
   isCard.classList.add("hidden")
   sizeCard.classList.add("hidden")
   basketCard.classList.remove("hidden")
+  btnCheckout.innerText = `Checkout: ${totalPrice()} dkk`
+})
+
+const addMoreBtn = document.querySelector("#btn-back")
+addMoreBtn.addEventListener("click", e => {
+  basketCard.classList.add("hidden")
+  sizeCard.classList.remove("hidden")
 })
 
 // Display correct number of tastes options
@@ -73,8 +82,6 @@ document.addEventListener("click", e => {
   })
 })
 
-init()
-
 // Add to basket event
 addToBasketBtn.addEventListener("click", e => {
   const list = [
@@ -93,6 +100,12 @@ addToBasketBtn.addEventListener("click", e => {
   updateBasket()
   resetForm()
 })
+
+function totalPrice() {
+  i = 0
+  orderList.forEach(e => (i += e.price))
+  return i
+}
 
 // Object constructor
 function Order(type, quantity, price, details, SKU) {
@@ -113,9 +126,9 @@ function iceQuantity() {
 
 function Price() {
   if (size.value == "medium") {
-    return 89 + " dkk"
+    return 89
   } else if (size.value == "large") {
-    return 152 + " dkk"
+    return 152
   }
 }
 
@@ -150,12 +163,12 @@ function updateBasket() {
 }
 
 function showBasketLists(mediumBasket, largeBasket) {
-  orderList.filter(obj => obj.quantity === "750ml").length == !0
-    ? mediumBasket.classList.remove("hidden")
-    : mediumBasket.classList.add("hidden"),
-    orderList.filter(obj => obj.quantity === "1500ml").length == !0
-      ? largeBasket.classList.remove("hidden")
-      : largeBasket.classList.add("hidden")
+  orderList.filter(obj => obj.quantity == "750ml").length == 0
+    ? mediumBasket.classList.add("hidden")
+    : mediumBasket.classList.remove("hidden"),
+    orderList.filter(obj => obj.quantity == "1500ml").length == 0
+      ? largeBasket.classList.add("hidden")
+      : largeBasket.classList.remove("hidden")
 }
 
 function populateBasketLists() {
@@ -221,6 +234,7 @@ function createRemoveBtn() {
       removeBtn.remove(e)
       basketAmount()
       updateBasket()
+      btnCheckout.innerText = `Checkout: ${totalPrice()} dkk`
     })
   })
 }
@@ -228,23 +242,16 @@ function createRemoveBtn() {
 // Init parameters
 function init() {
   const h = document.createElement("H2")
-  const t = document.createTextNode("")
-  const btnBack = document.createElement("a")
-  btnBack.setAttribute("id", "btn-back")
-  btnBack.innerHTML = "Add more!"
-  btnBack.classList.add("start")
+  const addMoreBtn = document.createElement("a")
+  addMoreBtn.setAttribute("id", "btn-back")
+  addMoreBtn.innerText = "Add more!"
+  addMoreBtn.classList.add("start")
   btnCheckout.setAttribute("id", "btnCheckout")
   btnCheckout.classList.add("start")
   basketCard.appendChild(h)
-  basketCard.appendChild(btnBack)
+  basketCard.appendChild(addMoreBtn)
   basketCard.appendChild(btnCheckout)
 }
-
-const btnBack = document.querySelector("#btn-back")
-btnBack.addEventListener("click", e => {
-  basketCard.classList.add("hidden")
-  sizeCard.classList.remove("hidden")
-})
 
 // Payment
 document.getElementById("pay").addEventListener("click", () => {
