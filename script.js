@@ -1,31 +1,35 @@
 let strict
-
-const iceOrder = document.querySelector("#ice-order")
-const priceH1 = document.querySelector(".priceH1")
-const size = document.querySelector("#size")
+// Cards
 const isCard = document.querySelector(".is-card")
 const sizeCard = document.querySelector(".size-card")
 const basketCard = document.querySelector(".basket-card")
-const cart = document.querySelector(".shop")
-const add = document.querySelector("#add")
-const mediumBasketList = document.querySelector(".medium-basket-list")
-const largeBasketList = document.querySelector(".large-basket-list")
-const btnCheckout = document.createElement("a")
-const mediumBasket = document.querySelector(".medium-basket")
-const largeBasket = document.querySelector(".large-basket")
-const emptyBasket = document.querySelector(".empty-basket")
 const formCard = document.querySelector(".form-card")
 
+// Event Listeners Items
+const iceOrder = document.querySelector("#ice-order")
+const size = document.querySelector("#size")
+const cartBtn = document.querySelector("#shopping-cart")
+const addToBasketBtn = document.querySelector("#add")
+const btnCheckout = document.createElement("a")
+
+// Rest
+const orderList = []
+
+// Cards display
 iceOrder.addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
 })
 
-// WIP Form card
 btnCheckout.addEventListener("click", e => {
   basketCard.classList.add("hidden")
   formCard.classList.remove("hidden")
-  // sessionStorage.setItem("total", `${totalPrice.value}`)
+})
+
+cartBtn.addEventListener("click", e => {
+  isCard.classList.add("hidden")
+  sizeCard.classList.add("hidden")
+  basketCard.classList.remove("hidden")
 })
 
 // Display correct number of tastes options
@@ -36,21 +40,18 @@ size.addEventListener("input", e => {
   const choice4 = document.querySelector("#choice4")
   const choice5 = document.querySelector("#choice5")
   if (size.value == "medium") {
-    priceH1.innerText = "DKK 89"
     choice1.classList.remove("hidden")
     choice2.classList.remove("hidden")
     choice3.classList.remove("hidden")
     choice4.classList.add("hidden")
     choice5.classList.add("hidden")
   } else if (size.value == "large") {
-    priceH1.innerText = "DKK 152"
     choice1.classList.remove("hidden")
     choice2.classList.remove("hidden")
     choice3.classList.remove("hidden")
     choice4.classList.remove("hidden")
     choice5.classList.remove("hidden")
   } else {
-    priceH1.innerText = ""
     choice1.classList.add("hidden")
     choice2.classList.add("hidden")
     choice3.classList.add("hidden")
@@ -74,18 +75,8 @@ document.addEventListener("click", e => {
 
 init()
 
-// Reset form after submit
-function resetForm() {
-  const smagvariant = document.querySelectorAll(".select")
-  const select = Array.from(smagvariant)
-  select.forEach(e => {
-    e.value = "undefined"
-  })
-  priceH1.innerText = ""
-}
-
-// Event Listeners
-add.addEventListener("click", e => {
+// Add to basket event
+addToBasketBtn.addEventListener("click", e => {
   const list = [
     (smagvariant1 = document.querySelector("#smagsvariant1").value),
     (smagvariant2 = document.querySelector("#smagsvariant2").value),
@@ -94,95 +85,122 @@ add.addEventListener("click", e => {
     (smagvariant5 = document.querySelector("#smagsvariant5").value),
   ]
   filterundefined(list)
-  if (size.value == "medium" && filteredList.length != 0) {
-    addMediumItemToList()
-    updatePrice(btnCheckout)
-    resetForm()
-  } else if (size.value == "large" && filteredList.length != 0) {
-    addLargeItemToList()
-    updatePrice(btnCheckout)
-    resetForm()
-  } else {
-    alert("You must pick a size and taste")
-  }
+  filteredList != ""
+    ? orderList.push(new Order("Is ", iceQuantity(), Price(), Tastes(), SKU()))
+    : alert("You must pick a size and taste")
+  basketAmount()
+  populateBasketLists()
+  updateBasket()
+  resetForm()
 })
 
-cart.addEventListener("click", e => {
-  isCard.classList.add("hidden")
-  sizeCard.classList.add("hidden")
-  basketCard.classList.remove("hidden")
-})
-
-function addMediumItemToList() {
-  const mediumBasketul = document.createElement("ul")
-  mediumBasketList.appendChild(mediumBasketul)
-  mediumBasketul.classList.add("basket-list-items")
-  createRemoveBtn()
-  mediumBasketul.appendChild(removeBtn)
-  filteredList.forEach(e => {
-    const listItems = document.createElement("li")
-    mediumBasketul.appendChild(listItems)
-    listItems.appendChild(document.createTextNode(e))
-  })
-  mediumBasket.insertAdjacentElement("afterend", mediumBasketList)
-  mediumBasket.classList.remove("hidden")
-  emptyBasket.classList.add("hidden")
+// Object constructor
+function Order(type, quantity, price, details, SKU) {
+  this.type = type
+  this.quantity = quantity
+  this.price = price
+  this.details = details
+  this.SKU = SKU
 }
 
-function addLargeItemToList() {
-  const largeBasketul = document.createElement("ul")
-  largeBasketList.appendChild(largeBasketul)
-  largeBasketul.classList.add("basket-list-items")
-  createRemoveBtn()
-  largeBasketul.appendChild(removeBtn)
-  filteredList.forEach(e => {
-    const listItems = document.createElement("li")
-    largeBasketul.appendChild(listItems)
-    listItems.appendChild(document.createTextNode(e))
-  })
-  largeBasket.insertAdjacentElement("afterend", largeBasketList)
-  largeBasket.classList.remove("hidden")
-  emptyBasket.classList.add("hidden")
-}
-
-// Price Update
-function updatePrice(btnCheckout) {
-  const mediumIcePrice = 89
-  const largeIcePrice = 152
-  const mediumPrice = mediumBasketList.childElementCount * mediumIcePrice
-  const largePrice = largeBasketList.childElementCount * largeIcePrice
-  const totalPrice = mediumPrice + largePrice
-  let itemCount =
-    mediumBasketList.childElementCount + largeBasketList.childElementCount
-  const itemCountEl = document.querySelector("#itemCount")
-  itemCountEl.textContent = " " + itemCount
-  btnCheckout.innerHTML = `Checkout: ${totalPrice} dkk`
-  emptyItemList(mediumBasket, largeBasket, emptyBasket, btnCheckout)
-  return { totalPrice }
-}
-
-// Visibility of items in cart
-function emptyItemList(mediumBasket, largeBasket, emptyBasket, btnCheckout) {
-  if (mediumBasketList.childElementCount == 0) {
-    mediumBasket.classList.add("hidden")
+function iceQuantity() {
+  if (size.value == "medium") {
+    return "750ml"
+  } else if (size.value == "large") {
+    return "1500ml"
   }
-  if (largeBasketList.childElementCount == 0) {
-    largeBasket.classList.add("hidden")
-  }
-  if (
-    mediumBasketList.childElementCount == 0 &&
-    largeBasketList.childElementCount == 0
-  ) {
-    emptyBasket.classList.remove("hidden")
-    btnCheckout.classList.add("hidden")
-  } else {
-    emptyBasket.classList.add("hidden")
-    btnCheckout.classList.remove("hidden")
+}
+
+function Price() {
+  if (size.value == "medium") {
+    return 89 + " dkk"
+  } else if (size.value == "large") {
+    return 152 + " dkk"
   }
 }
 
 function filterundefined(list) {
   filteredList = list.filter(e => e != "undefined")
+}
+
+function Tastes() {
+  return filteredList
+}
+
+function SKU() {
+  return `Is${iceQuantity() == "750ml" ? "-M-" : "-L-"}${filteredList
+    .map(el => el.slice(0, 3))
+    .join("")}`
+}
+
+// Basket number
+function basketAmount() {
+  const cartItemCount = document.querySelector("#itemCount")
+  cartItemCount.innerText = " " + orderList.length
+}
+
+function updateBasket() {
+  const emptyBasket = document.querySelector(".empty-basket")
+  const mediumBasket = document.querySelector(".medium-basket")
+  const largeBasket = document.querySelector(".large-basket")
+  orderList.length != 0
+    ? emptyBasket.classList.add("hidden")
+    : emptyBasket.classList.remove("hidden")
+  showBasketLists(mediumBasket, largeBasket)
+}
+
+function showBasketLists(mediumBasket, largeBasket) {
+  orderList.filter(obj => obj.quantity === "750ml").length == !0
+    ? mediumBasket.classList.remove("hidden")
+    : mediumBasket.classList.add("hidden"),
+    orderList.filter(obj => obj.quantity === "1500ml").length == !0
+      ? largeBasket.classList.remove("hidden")
+      : largeBasket.classList.add("hidden")
+}
+
+function populateBasketLists() {
+  const mediumBasketList = document.querySelector(".medium-basket-list")
+  const largeBasketList = document.querySelector(".large-basket-list")
+  if (orderList[orderList.length - 1].quantity == "750ml") {
+    mediumBasketList.appendChild(document.createElement("ul"))
+    mediumBasketList.lastChild.className = "basket-list"
+    mediumBasketList.lastChild.setAttribute(
+      "id",
+      `${orderList[orderList.length - 1].SKU}`
+    )
+    createRemoveBtn()
+    mediumBasketList.lastChild.appendChild(removeBtn)
+    orderList[orderList.length - 1].details.forEach(e => {
+      mediumBasketList.lastChild.appendChild(
+        document.createElement("li")
+      ).innerText = `${e}`
+    })
+  } else if (orderList[orderList.length - 1].quantity == "1500ml") {
+    largeBasketList.appendChild(document.createElement("ul"))
+    largeBasketList.lastChild.className = "basket-list"
+    largeBasketList.lastChild.setAttribute(
+      "id",
+      `${orderList[orderList.length - 1].SKU}`
+    )
+    createRemoveBtn()
+    largeBasketList.lastChild.appendChild(removeBtn)
+    orderList[orderList.length - 1].details.forEach(e => {
+      largeBasketList.lastChild.appendChild(
+        document.createElement("li")
+      ).innerText = `${e}`
+    })
+  } else {
+    console.log("Something went wrong at populateBasketLists()")
+  }
+}
+
+// Reset form after submit
+function resetForm() {
+  const smagvariant = document.querySelectorAll(".select")
+  const select = Array.from(smagvariant)
+  select.forEach(e => {
+    e.value = "undefined"
+  })
 }
 
 // Remove Button
@@ -193,9 +211,16 @@ function createRemoveBtn() {
   removeBtnArr.push(removeBtn)
   removeBtnArr.forEach(removeBtn => {
     removeBtn.addEventListener("click", e => {
+      const removeIndex = orderList
+        .map(function (item) {
+          return item.SKU
+        })
+        .indexOf(`${removeBtn.parentNode.id}`)
+      orderList.splice(removeIndex, 1)
       removeBtn.parentNode.remove()
       removeBtn.remove(e)
-      updatePrice(btnCheckout)
+      basketAmount()
+      updateBasket()
     })
   })
 }

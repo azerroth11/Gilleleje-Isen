@@ -68,7 +68,7 @@ nav ul li a {
   font-size: 1.8rem;
 }
 
-.shop {
+#shopping-cart {
   text-decoration: none;
   color: var(--pink);
   text-shadow: 1px 1px 3px #fff;
@@ -219,6 +219,10 @@ select {
   font-size: 1.25rem;
 }
 
+.card ul {
+  list-style: none;
+}
+
 .fa-minus-circle {
   color: var(--pink);
   cursor: pointer;
@@ -235,7 +239,7 @@ select {
   width: 100%;
 }
 
-.basket-list-items {
+.basket-list {
   position: relative;
   background-color: var(--light-blue);
   margin-bottom: 1.2rem;
