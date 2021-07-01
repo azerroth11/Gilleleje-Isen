@@ -336,22 +336,27 @@ select {
 
 /* Footer */
 footer {
+  width: 100%;
+  background-color: #000;
   position: absolute;
   bottom: 0;
+}
+
+.footer-content {
   display: grid;
   grid-template-columns: 3.5fr 1fr;
   min-height: 8vh;
-  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 1rem;
   line-height: 1rem;
-  background-color: #000;
   color: grey;
 }
 
 .adress {
   display: grid;
   gap: 0.5rem;
-  padding-left: 10vw;
+  padding-left: 5vw;
 }
 
 footer a {
