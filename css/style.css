@@ -50,8 +50,9 @@ a:active {
 
 /* Javascript */
 .hidden {
-  visibility: hidden;
-  position: absolute;
+  display: none !important;
+  /* visibility: hidden; */
+  /* position: absolute; */
 }
 
 .undefined {
@@ -113,6 +114,7 @@ nav ul li a {
 }
 
 .hero .card {
+  margin-top: -5vh;
   height: auto;
   gap: 2.5rem;
   background-color: rgba(121, 176, 205, 0.8);
