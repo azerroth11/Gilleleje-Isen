@@ -5,36 +5,37 @@ const sizeCard = document.querySelector(".size-card")
 const basketCard = document.querySelector(".basket-card")
 const formCard = document.querySelector(".form-card")
 
-// Event Listeners Items
-const iceOrder = document.querySelector("#ice-order")
-const size = document.querySelector("#size")
-const cartBtn = document.querySelector("#shopping-cart")
-const addToBasketBtn = document.querySelector("#add")
-const checkoutBtn = document.createElement("a")
-const payBtn = document.querySelector("#pay")
-
 // Rest
+const size = document.querySelector("#size")
+const checkoutBtn = document.createElement("a")
 const orderList = []
+
+const cardsd = [isCard, sizeCard, basketCard, formCard]
 
 init()
 
-// Cards display
-iceOrder.addEventListener("click", e => {
+document.querySelector("#prevTo").addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
 })
 
-cartBtn.addEventListener("click", e => {
-  isCard.classList.add("hidden")
-  sizeCard.classList.add("hidden")
-  basketCard.classList.remove("hidden")
-  checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
+// Cards display
+document.querySelector("#ice-order").addEventListener("click", e => {
+  isCard.classList.toggle("hidden")
+  sizeCard.classList.toggle("hidden")
 })
 
 const addMoreBtn = document.querySelector("#btn-back")
 addMoreBtn.addEventListener("click", e => {
   basketCard.classList.add("hidden")
   sizeCard.classList.remove("hidden")
+})
+
+document.querySelector("#shopping-cart").addEventListener("click", e => {
+  isCard.classList.add("hidden")
+  sizeCard.classList.add("hidden")
+  basketCard.classList.remove("hidden")
+  checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
 })
 
 checkoutBtn.addEventListener("click", e => {
@@ -84,7 +85,7 @@ document.addEventListener("click", e => {
 })
 
 // Add to basket event
-addToBasketBtn.addEventListener("click", e => {
+document.querySelector("#add").addEventListener("click", e => {
   const list = [
     (smagvariant1 = document.querySelector("#smagsvariant1").value),
     (smagvariant2 = document.querySelector("#smagsvariant2").value),
@@ -94,10 +95,11 @@ addToBasketBtn.addEventListener("click", e => {
   ]
   filterundefined(list)
   filteredList != ""
-    ? orderList.push(new Order("Is ", iceQuantity(), Price(), Tastes(), SKU()))
+    ? orderList.push(
+        new Order("Is ", iceQuantity(), Price(), Tastes(), SKU())
+      ) + populateBasketLists()
     : alert("You must pick a size and taste")
   basketAmount()
-  populateBasketLists()
   updateBasket()
   resetForm()
 })
@@ -253,7 +255,7 @@ function init() {
 }
 
 // Order form
-payBtn.addEventListener("click", e => {
+document.querySelector("#pay").addEventListener("click", e => {
   e.preventDefault()
   let person = {
     firstName: "",

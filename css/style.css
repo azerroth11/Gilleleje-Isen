@@ -15,7 +15,6 @@
 }
 
 body {
-  min-height: 100vh;
   background-color: var(--yellow);
   display: grid;
   font-family: "Lato", sans-serif;
@@ -23,6 +22,15 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.hero a,
+.buy a {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+a:active {
+  scale: 0.95;
 }
 
 /* Javascript */
@@ -87,40 +95,36 @@ nav ul li a {
   place-items: center;
 }
 
-.sale {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-height: 450px;
-  max-width: 650px;
-  border-radius: 50px;
-  justify-self: center;
-  color: #fff;
-  padding: 2rem 1rem;
-  margin: auto 1rem;
-  font-size: 1.2rem;
-  text-align: center;
-  cursor: pointer;
-  text-shadow: 1px 1px 5px #000;
+.hero .card {
   background-color: rgba(121, 176, 205, 0.8);
 }
 
-.sale-pink {
+.hero .card h2 {
+  padding-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: #fff;
+  text-shadow: 1px 1px 5px #000;
+}
+
+.hero .card .sale-pink {
   color: var(--pink);
   text-shadow: 1px 1px 5px #fff;
 }
 
-.ybckgrd {
+.hero .card span {
+  color: var(--yellow);
+  font-size: 2.1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hero .card a {
   background-color: var(--yellow);
   padding: 0.5rem;
   width: 175px;
   margin: 0 auto;
   border-radius: 15px;
-}
-
-.sale span {
-  color: var(--yellow);
-  font-size: 2.1rem;
+  font-size: 1.8rem;
 }
 
 /* Vores is & Om os */
@@ -158,9 +162,8 @@ nav ul li a {
 /* Shop */
 .buy {
   display: grid;
-  min-height: 81vh;
+  min-height: 78vh;
   place-items: center;
-  gap: 2rem;
   background-color: var(--light-blue);
 }
 
@@ -183,16 +186,11 @@ nav ul li a {
   font-size: 1.4rem;
 }
 
-.card h2 s {
-  color: grey;
-}
-
 .buy img {
   max-width: 100%;
 }
 
-.start,
-#add {
+.start {
   padding: 0.5rem 1rem;
   background-color: var(--yellow);
   display: block;
@@ -202,6 +200,10 @@ nav ul li a {
   color: var(--pink);
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+#add {
+  position: relative;
 }
 
 select {
@@ -312,21 +314,6 @@ footer a {
 }
 
 @media screen and (min-width: 800px) {
-  /* Main */
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 8rem;
-    max-width: 1200px;
-    justify-self: center;
-  }
-
-  .sale {
-    padding: 5rem;
-    max-height: none;
-    gap: 2.5rem;
-  }
-
   .card {
     scale: 1.1;
   }
