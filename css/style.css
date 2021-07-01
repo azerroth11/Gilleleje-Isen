@@ -335,14 +335,6 @@ select {
   transition: all 1s ease-in-out;
 }
 
-/* Social */
-/* .social iframe {
-  width: clamp(320px, 100%, 500px);
-  margin: auto 50%;
-  transform: translateX(-50%);
-  height: 640px;
-} */
-
 /* Footer */
 footer {
   width: 100%;
@@ -372,4 +364,14 @@ footer a {
   font-size: 2.5rem;
   color: var(--yellow);
   place-self: center;
+}
+
+@media screen and (min-width: 1350px) {
+  .buy {
+    order: 2;
+  }
+
+  #rentACounter {
+    order: 1;
+  }
 }
