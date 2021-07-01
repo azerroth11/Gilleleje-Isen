@@ -273,10 +273,10 @@ payBtn.addEventListener("click", e => {
     document.querySelector("#input-mail").checkValidity() &&
     document.querySelector("#pickup-date").checkValidity()
   ) {
-    console.log("passed")
+    // Pass totalPrice(), person, orderList to API
     payment()
   } else {
-    console.log("Failed")
+    alert("Make sure to complete all required fields")
   }
 })
 
