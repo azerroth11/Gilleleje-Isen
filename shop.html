@@ -13,7 +13,7 @@
     <script src="script.js" defer></script>
     <title>Shop</title>
   </head>
-  <body>
+  <body id="shopBody">
     <nav>
       <a href="index.html"><img src="./img/logo.png" alt="" /></a>
       <ul>
@@ -35,179 +35,204 @@
       </ul>
     </nav>
 
-    <section class="buy">
-      <div class="card is-card">
-        <h1>Click & Collect</h1>
-        <img src="./img/750ml.png" alt="" />
-        <h2>HJEMMELAVET IS</h2>
-        <h2>Fra 89dkk</h2>
-        <a class="start" id="ice-order">Pick & Select options</a>
-        <a class="prev start" href="index.html">Tilbage</a>
+    <div class="shop">
+      <div class="buy">
+        <div class="card is-card">
+          <h1>Click & Collect</h1>
+          <img src="./img/750ml.png" alt="" />
+          <h2>
+            Frisk hjemmelavet is ! <br />
+            Vælg mellem 16 forskellige smagsvarianter
+          </h2>
+          <h2>Fra 89dkk</h2>
+          <a class="start" id="ice-order">Pick & Select options</a>
+          <a class="prev start" href="index.html">Tilbage</a>
+        </div>
+
+        <div class="card size-card hidden">
+          <div class="choice">
+            <h3>Vaelge storelse</h3>
+            <select name="size" id="size" class="select">
+              <option value="undefined" selected>Pick a size</option>
+              <option value="medium">750ml - 89dkk</option>
+              <option value="large">1500ml - 152dkk</option>
+            </select>
+          </div>
+
+          <div id="choice1" class="choice hidden">
+            <h3>Smage</h3>
+            <select name="Smagsvariant" id="smagsvariant1" class="select">
+              <option value="undefined" selected disabled hidden>
+                Choose an option
+              </option>
+              <option value="Vanilje">Vanilje</option>
+              <option value="Chokolade">Chokolade</option>
+              <option value="Koldskal">Koldskal</option>
+              <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+              <option value="Lakrids">Lakrids</option>
+              <option value="Citrontaerte">Citrontaerte</option>
+              <option value="Saltkaramel">Saltkaramel</option>
+              <option value="Hasselnød">Hasselnød</option>
+              <option value="Aegte pistacie">Aegte pistacie</option>
+              <option value="Nougat">Nougat</option>
+              <option value="Kaffe">Kaffe</option>
+              <option value="Kokos">Kokos</option>
+              <option value="Mango/Passion">Mango/Passion</option>
+              <option value="Blodappelsin">Blodappelsin</option>
+              <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
+              <option value="Ananas">Ananas</option>
+            </select>
+          </div>
+
+          <div id="choice2" class="choice hidden">
+            <select name="Smagsvariant" id="smagsvariant2" class="select">
+              <option value="undefined" selected disabled hidden>
+                Choose an option
+              </option>
+              <option value="Vanilje">Vanilje</option>
+              <option value="Chokolade">Chokolade</option>
+              <option value="Koldskal">Koldskal</option>
+              <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+              <option value="Lakrids">Lakrids</option>
+              <option value="Citrontaerte">Citrontaerte</option>
+              <option value="Saltkaramel">Saltkaramel</option>
+              <option value="Hasselnød">Hasselnød</option>
+              <option value="Aegte pistacie">Aegte pistacie</option>
+              <option value="Nougat">Nougat</option>
+              <option value="Kaffe">Kaffe</option>
+              <option value="Kokos">Kokos</option>
+              <option value="Mango/Passion">Mango/Passion</option>
+              <option value="Blodappelsin">Blodappelsin</option>
+              <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
+              <option value="Ananas">Ananas</option>
+            </select>
+          </div>
+
+          <div id="choice3" class="choice hidden">
+            <select name="Smagsvariant" id="smagsvariant3" class="select">
+              <option value="undefined" selected disabled hidden>
+                Choose an option
+              </option>
+              <option value="Vanilje">Vanilje</option>
+              <option value="Chokolade">Chokolade</option>
+              <option value="Koldskal">Koldskal</option>
+              <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+              <option value="Lakrids">Lakrids</option>
+              <option value="Citrontaerte">Citrontaerte</option>
+              <option value="Saltkaramel">Saltkaramel</option>
+              <option value="Hasselnød">Hasselnød</option>
+              <option value="Aegte pistacie">Aegte pistacie</option>
+              <option value="Nougat">Nougat</option>
+              <option value="Kaffe">Kaffe</option>
+              <option value="Kokos">Kokos</option>
+              <option value="Mango/Passion">Mango/Passion</option>
+              <option value="Blodappelsin">Blodappelsin</option>
+              <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
+              <option value="Ananas">Ananas</option>
+            </select>
+          </div>
+
+          <div id="choice4" class="choice hidden">
+            <select name="Smagsvariant" id="smagsvariant4" class="select">
+              <option value="undefined" selected disabled hidden>
+                Choose an option
+              </option>
+              <option value="Vanilje">Vanilje</option>
+              <option value="Chokolade">Chokolade</option>
+              <option value="Koldskal">Koldskal</option>
+              <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+              <option value="Lakrids">Lakrids</option>
+              <option value="Citrontaerte">Citrontaerte</option>
+              <option value="Saltkaramel">Saltkaramel</option>
+              <option value="Hasselnød">Hasselnød</option>
+              <option value="Aegte pistacie">Aegte pistacie</option>
+              <option value="Nougat">Nougat</option>
+              <option value="Kaffe">Kaffe</option>
+              <option value="Kokos">Kokos</option>
+              <option value="Mango/Passion">Mango/Passion</option>
+              <option value="Blodappelsin">Blodappelsin</option>
+              <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
+              <option value="Ananas">Ananas</option>
+            </select>
+          </div>
+
+          <div id="choice5" class="choice hidden">
+            <select name="Smagsvariant" id="smagsvariant5" class="select">
+              <option value="undefined" selected disabled hidden>
+                Choose an option
+              </option>
+              <option value="Vanilje">Vanilje</option>
+              <option value="Chokolade">Chokolade</option>
+              <option value="Koldskal">Koldskal</option>
+              <option value="Kaempe Solbaer">Kaempe Solbaer</option>
+              <option value="Lakrids">Lakrids</option>
+              <option value="Citrontaerte">Citrontaerte</option>
+              <option value="Saltkaramel">Saltkaramel</option>
+              <option value="Hasselnød">Hasselnød</option>
+              <option value="Aegte pistacie">Aegte pistacie</option>
+              <option value="Nougat">Nougat</option>
+              <option value="Kaffe">Kaffe</option>
+              <option value="Kokos">Kokos</option>
+              <option value="Mango/Passion">Mango/Passion</option>
+              <option value="Blodappelsin">Blodappelsin</option>
+              <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
+              <option value="Ananas">Ananas</option>
+            </select>
+          </div>
+
+          <div>
+            <h1 class="priceH1"></h1>
+          </div>
+          <a id="add" class="start" href="#" type="submit">Tilføj til kurv</a>
+          <a class="prev start" id="prevTo" href="#">Tilbage</a>
+        </div>
+
+        <div class="card basket-card hidden">
+          <h1>Your current basket:</h1>
+          <p class="empty-basket">Empty and sad !</p>
+          <h2 class="medium-basket hidden">750ml (89dkk/u):</h2>
+          <ul class="medium-basket-list"></ul>
+          <h2 class="large-basket hidden">1500ml (152dkk/u):</h2>
+          <ul class="large-basket-list"></ul>
+        </div>
+
+        <div class="card form-card hidden">
+          <form id="form">
+            <label for="fname">Navn<span>*</span></label>
+            <input id="fname" type="text" required />
+            <label for="lname">Last name<span>*</span></label>
+            <input id="lname" type="text" required />
+            <label for="company-name">Company name (optional)</label>
+            <input id="company-name" type="text" />
+            <label for="input-email">Email adress<span>*</span></label>
+            <input type="email" id="input-mail" required />
+            <label for="pickup-date">Pickup-date<span>*</span></label>
+            <input id="pickup-date" type="date" required />
+            <button id="pay" class="start">Til betal</button>
+          </form>
+        </div>
       </div>
 
-      <div class="card size-card hidden">
-        <div class="choice">
-          <h3>Vaelge storelse</h3>
-          <select name="size" id="size" class="select">
-            <option value="undefined" selected>Pick a size</option>
-            <option value="medium">750ml - 89dkk</option>
-            <option value="large">1500ml - 152dkk</option>
-          </select>
+      <div class="buy" id="rentACounter">
+        <div class="card">
+          <h1>Lej en isdisk til jeres selskab</h1>
+          <img src="./img/Lej-en-isdisk.jpg" alt="" />
+          <h2>Kr. 2000 inkl. 3x5 liter is, nok til 50-75 personer</h2>
+          <a class="start">More informations</a>
+          <a class="prev start" href="index.html">Tilbage</a>
         </div>
-
-        <div id="choice1" class="choice hidden">
-          <h3>Smage</h3>
-          <select name="Smagsvariant" id="smagsvariant1" class="select">
-            <option value="undefined" selected disabled hidden>
-              Choose an option
-            </option>
-            <option value="Vanilje">Vanilje</option>
-            <option value="Chokolade">Chokolade</option>
-            <option value="Koldskal">Koldskal</option>
-            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
-            <option value="Lakrids">Lakrids</option>
-            <option value="Citrontaerte">Citrontaerte</option>
-            <option value="Saltkaramel">Saltkaramel</option>
-            <option value="Hasselnød">Hasselnød</option>
-            <option value="Aegte pistacie">Aegte pistacie</option>
-            <option value="Nougat">Nougat</option>
-            <option value="Kaffe">Kaffe</option>
-            <option value="Kokos">Kokos</option>
-            <option value="Mango/Passion">Mango/Passion</option>
-            <option value="Blodappelsin">Blodappelsin</option>
-            <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
-            <option value="Ananas">Ananas</option>
-          </select>
-        </div>
-
-        <div id="choice2" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant2" class="select">
-            <option value="undefined" selected disabled hidden>
-              Choose an option
-            </option>
-            <option value="Vanilje">Vanilje</option>
-            <option value="Chokolade">Chokolade</option>
-            <option value="Koldskal">Koldskal</option>
-            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
-            <option value="Lakrids">Lakrids</option>
-            <option value="Citrontaerte">Citrontaerte</option>
-            <option value="Saltkaramel">Saltkaramel</option>
-            <option value="Hasselnød">Hasselnød</option>
-            <option value="Aegte pistacie">Aegte pistacie</option>
-            <option value="Nougat">Nougat</option>
-            <option value="Kaffe">Kaffe</option>
-            <option value="Kokos">Kokos</option>
-            <option value="Mango/Passion">Mango/Passion</option>
-            <option value="Blodappelsin">Blodappelsin</option>
-            <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
-            <option value="Ananas">Ananas</option>
-          </select>
-        </div>
-
-        <div id="choice3" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant3" class="select">
-            <option value="undefined" selected disabled hidden>
-              Choose an option
-            </option>
-            <option value="Vanilje">Vanilje</option>
-            <option value="Chokolade">Chokolade</option>
-            <option value="Koldskal">Koldskal</option>
-            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
-            <option value="Lakrids">Lakrids</option>
-            <option value="Citrontaerte">Citrontaerte</option>
-            <option value="Saltkaramel">Saltkaramel</option>
-            <option value="Hasselnød">Hasselnød</option>
-            <option value="Aegte pistacie">Aegte pistacie</option>
-            <option value="Nougat">Nougat</option>
-            <option value="Kaffe">Kaffe</option>
-            <option value="Kokos">Kokos</option>
-            <option value="Mango/Passion">Mango/Passion</option>
-            <option value="Blodappelsin">Blodappelsin</option>
-            <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
-            <option value="Ananas">Ananas</option>
-          </select>
-        </div>
-
-        <div id="choice4" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant4" class="select">
-            <option value="undefined" selected disabled hidden>
-              Choose an option
-            </option>
-            <option value="Vanilje">Vanilje</option>
-            <option value="Chokolade">Chokolade</option>
-            <option value="Koldskal">Koldskal</option>
-            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
-            <option value="Lakrids">Lakrids</option>
-            <option value="Citrontaerte">Citrontaerte</option>
-            <option value="Saltkaramel">Saltkaramel</option>
-            <option value="Hasselnød">Hasselnød</option>
-            <option value="Aegte pistacie">Aegte pistacie</option>
-            <option value="Nougat">Nougat</option>
-            <option value="Kaffe">Kaffe</option>
-            <option value="Kokos">Kokos</option>
-            <option value="Mango/Passion">Mango/Passion</option>
-            <option value="Blodappelsin">Blodappelsin</option>
-            <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
-            <option value="Ananas">Ananas</option>
-          </select>
-        </div>
-
-        <div id="choice5" class="choice hidden">
-          <select name="Smagsvariant" id="smagsvariant5" class="select">
-            <option value="undefined" selected disabled hidden>
-              Choose an option
-            </option>
-            <option value="Vanilje">Vanilje</option>
-            <option value="Chokolade">Chokolade</option>
-            <option value="Koldskal">Koldskal</option>
-            <option value="Kaempe Solbaer">Kaempe Solbaer</option>
-            <option value="Lakrids">Lakrids</option>
-            <option value="Citrontaerte">Citrontaerte</option>
-            <option value="Saltkaramel">Saltkaramel</option>
-            <option value="Hasselnød">Hasselnød</option>
-            <option value="Aegte pistacie">Aegte pistacie</option>
-            <option value="Nougat">Nougat</option>
-            <option value="Kaffe">Kaffe</option>
-            <option value="Kokos">Kokos</option>
-            <option value="Mango/Passion">Mango/Passion</option>
-            <option value="Blodappelsin">Blodappelsin</option>
-            <option value="Jordbaer/Rabarber">Jordbaer/Rabarber</option>
-            <option value="Ananas">Ananas</option>
-          </select>
-        </div>
-
-        <div>
-          <h1 class="priceH1"></h1>
-        </div>
-        <a id="add" class="start" href="#" type="submit">Tilføj til kurv</a>
-        <a class="prev start" id="prevTo" href="#">Tilbage</a>
       </div>
 
-      <div class="card basket-card hidden">
-        <h1>Your current basket:</h1>
-        <p class="empty-basket">Empty and sad !</p>
-        <h2 class="medium-basket hidden">750ml (89dkk/u):</h2>
-        <ul class="medium-basket-list"></ul>
-        <h2 class="large-basket hidden">1500ml (152dkk/u):</h2>
-        <ul class="large-basket-list"></ul>
+      <div class="buy" id="visit">
+        <div class="card">
+          <h1>Gilleleje-Isen på besøg</h1>
+          <img src="./img/rent-us.jpg" alt="" />
+          <h2>Vi kommer ud og serverer is til jeres selskab</h2>
+          <a class="start">Kontakt os for pris</a>
+          <a class="prev start" href="index.html">Tilbage</a>
+        </div>
       </div>
-
-      <div class="card form-card hidden">
-        <form id="form">
-          <label for="fname">Navn<span>*</span></label>
-          <input id="fname" type="text" required />
-          <label for="lname">Last name<span>*</span></label>
-          <input id="lname" type="text" required />
-          <label for="company-name">Company name (optional)</label>
-          <input id="company-name" type="text" />
-          <label for="input-email">Email adress<span>*</span></label>
-          <input type="email" id="input-mail" required />
-          <label for="pickup-date">Pickup-date<span>*</span></label>
-          <input id="pickup-date" type="date" required />
-          <button id="pay" class="start">Til betal</button>
-        </form>
-      </div>
-    </section>
+    </div>
 
     <footer>
       <div class="adress">

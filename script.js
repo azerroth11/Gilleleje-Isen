@@ -23,6 +23,8 @@ document.querySelector("#prevTo").addEventListener("click", e => {
 document.querySelector("#ice-order").addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
+  document.querySelector("#rentACounter").classList.toggle("hidden")
+  document.querySelector("#visit").classList.toggle("hidden")
 })
 
 const addMoreBtn = document.querySelector("#btn-back")
