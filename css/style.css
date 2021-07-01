@@ -314,6 +314,15 @@ footer a {
 }
 
 @media screen and (min-width: 800px) {
+  /* Main */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 8rem;
+    max-width: 1200px;
+    justify-self: center;
+  }
+
   .card {
     scale: 1.1;
   }
