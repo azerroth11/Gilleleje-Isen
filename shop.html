@@ -36,7 +36,7 @@
     </nav>
 
     <section class="buy">
-      <div class="card is-card">
+      <div class="card is-card hidden">
         <h1>Click & Collect</h1>
         <img src="./img/750ml.png" alt="" />
         <h2>HJEMMELAVET IS</h2>
@@ -189,7 +189,7 @@
         <ul class="large-basket-list"></ul>
       </div>
 
-      <div class="card form-card hidden">
+      <div class="card form-card">
         <form id="form">
           <label for="fname">Navn<span>*</span></label>
           <input id="fname" type="text" required />
@@ -201,9 +201,7 @@
           <input type="email" id="input-mail" required />
           <label for="pickup-date">Pickup-date<span>*</span></label>
           <input id="pickup-date" type="date" required />
-          <button id="pay" class="start" type="submit" value="submit">
-            Til betal
-          </button>
+          <button id="pay" class="start">Til betal</button>
         </form>
       </div>
     </section>

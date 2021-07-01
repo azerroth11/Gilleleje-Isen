@@ -10,7 +10,8 @@ const iceOrder = document.querySelector("#ice-order")
 const size = document.querySelector("#size")
 const cartBtn = document.querySelector("#shopping-cart")
 const addToBasketBtn = document.querySelector("#add")
-const btnCheckout = document.createElement("a")
+const checkoutBtn = document.createElement("a")
+const payBtn = document.querySelector("#pay")
 
 // Rest
 const orderList = []
@@ -23,22 +24,22 @@ iceOrder.addEventListener("click", e => {
   sizeCard.classList.toggle("hidden")
 })
 
-btnCheckout.addEventListener("click", e => {
-  basketCard.classList.add("hidden")
-  formCard.classList.remove("hidden")
-})
-
 cartBtn.addEventListener("click", e => {
   isCard.classList.add("hidden")
   sizeCard.classList.add("hidden")
   basketCard.classList.remove("hidden")
-  btnCheckout.innerText = `Checkout: ${totalPrice()} dkk`
+  checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
 })
 
 const addMoreBtn = document.querySelector("#btn-back")
 addMoreBtn.addEventListener("click", e => {
   basketCard.classList.add("hidden")
   sizeCard.classList.remove("hidden")
+})
+
+checkoutBtn.addEventListener("click", e => {
+  basketCard.classList.add("hidden")
+  formCard.classList.remove("hidden")
 })
 
 // Display correct number of tastes options
@@ -101,6 +102,7 @@ addToBasketBtn.addEventListener("click", e => {
   resetForm()
 })
 
+// Calculate the total price
 function totalPrice() {
   i = 0
   orderList.forEach(e => (i += e.price))
@@ -234,66 +236,80 @@ function createRemoveBtn() {
       removeBtn.remove(e)
       basketAmount()
       updateBasket()
-      btnCheckout.innerText = `Checkout: ${totalPrice()} dkk`
+      checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
     })
   })
 }
 
 // Init parameters
 function init() {
-  const h = document.createElement("H2")
   const addMoreBtn = document.createElement("a")
   addMoreBtn.setAttribute("id", "btn-back")
   addMoreBtn.innerText = "Add more!"
   addMoreBtn.classList.add("start")
-  btnCheckout.setAttribute("id", "btnCheckout")
-  btnCheckout.classList.add("start")
-  basketCard.appendChild(h)
+  checkoutBtn.classList.add("start")
   basketCard.appendChild(addMoreBtn)
-  basketCard.appendChild(btnCheckout)
+  basketCard.appendChild(checkoutBtn)
 }
 
-// Payment
-document.getElementById("pay").addEventListener("click", () => {
-  const apikey =
-    "4417:TFYlzvKYN5eAgehM7Oig+94MWl8Cv7ABdCQEBDQduBNxk0oEDw/dzY0Eh2ifnHuU"
-  const successURL = "https://azerroth11.github.io/Gilleleje-Isen/success.html"
-  const language = "da" // default is to use browser language
-
-  fetch("https://api.test.scanpay.dk/v1/new", {
-    method: "POST",
-    headers: {
-      Authorization: "Basic" + window.btoa(apikey),
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      successurl: "https://azerroth11.github.io/Gilleleje-Isen/success.html",
-      language: "da", // default is 'auto', e.g. use browser language
-      orderid: "1",
-      items: [
-        {
-          name: "750ml: Vanilje, Chokolade, Lakrids",
-          quantity: 2,
-          total: "89 DKK",
-          sku: "7vcl",
-        },
-        {
-          name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
-          quantity: 1,
-          total: "152 DKK",
-          sku: "15kvclk",
-        },
-      ],
-    }),
-  })
-    .then(res => res.json())
-    .then(o => {
-      // https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
-      window.location.replace(o.url)
-    })
-    .catch(() => {
-      alert(
-        "Something went wrong. Please contact support to get a new payment link"
-      )
-    })
+// Order form
+payBtn.addEventListener("click", e => {
+  let person = {
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    email: "",
+    pickupDate: "",
+  }
+  person.firstName = document.querySelector("#fname").value
+  person.lastName = document.querySelector("#lname").value
+  person.companyName = document.querySelector("#company-name").value
+  person.email = document.querySelector("#input-mail").value
+  person.pickupDate = document.querySelector("#pickup-date").value
+  console.log(person)
 })
+
+// Payment
+// document.getElementById("pay").addEventListener("click", () => {
+//   const apikey =
+//     "4417:TFYlzvKYN5eAgehM7Oig+94MWl8Cv7ABdCQEBDQduBNxk0oEDw/dzY0Eh2ifnHuU"
+//   const successURL = "https://azerroth11.github.io/Gilleleje-Isen/success.html"
+//   const language = "da" // default is to use browser language
+
+//   fetch("https://api.test.scanpay.dk/v1/new", {
+//     method: "POST",
+//     headers: {
+//       Authorization: "Basic" + window.btoa(apikey),
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       successurl: "https://azerroth11.github.io/Gilleleje-Isen/success.html",
+//       language: "da", // default is 'auto', e.g. use browser language
+//       orderid: "1",
+//       items: [
+//         {
+//           name: "750ml: Vanilje, Chokolade, Lakrids",
+//           quantity: 2,
+//           total: "89 DKK",
+//           sku: "7vcl",
+//         },
+//         {
+//           name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
+//           quantity: 1,
+//           total: "152 DKK",
+//           sku: "15kvclk",
+//         },
+//       ],
+//     }),
+//   })
+//     .then(res => res.json())
+//     .then(o => {
+//       // https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
+//       window.location.replace(o.url)
+//     })
+//     .catch(() => {
+//       alert(
+//         "Something went wrong. Please contact support to get a new payment link"
+//       )
+//     })
+// })
