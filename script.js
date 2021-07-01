@@ -14,9 +14,14 @@ const cardsd = [isCard, sizeCard, basketCard, formCard]
 
 init()
 
-document.querySelector("#prevTo").addEventListener("click", e => {
+document.querySelector("#prevToShop").addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
+})
+
+document.querySelector("#prevToBasket").addEventListener("click", e => {
+  formCard.classList.toggle("hidden")
+  basketCard.classList.toggle("hidden")
 })
 
 // Cards display
@@ -250,8 +255,8 @@ function init() {
   const addMoreBtn = document.createElement("a")
   addMoreBtn.setAttribute("id", "btn-back")
   addMoreBtn.innerText = "Add more!"
-  addMoreBtn.classList.add("start")
-  checkoutBtn.classList.add("start")
+  addMoreBtn.classList.add("button")
+  checkoutBtn.classList.add("button")
   basketCard.appendChild(addMoreBtn)
   basketCard.appendChild(checkoutBtn)
 }

@@ -189,7 +189,7 @@ nav ul li a {
   max-width: 175px;
 }
 
-/* Shop */
+/* Ice order */
 .buy {
   display: grid;
   max-width: 540px;
@@ -212,16 +212,23 @@ nav ul li a {
   padding: 2rem;
 }
 
+.size-card,
+.basket-card,
+.form-card {
+  height: auto;
+}
+
 .card h2 {
   color: hsl(53, 100%, 94%);
   font-size: 1.4rem;
 }
 
-.buy img {
+.card img {
+  max-height: 100%;
   max-width: 100%;
 }
 
-.start {
+.button {
   padding: 0.5rem 1rem;
   background-color: var(--yellow);
   display: block;
@@ -285,6 +292,7 @@ select {
 /* Form */
 #form {
   display: grid;
+  place-items: center;
   gap: 0.25rem;
 }
 
@@ -324,6 +332,7 @@ select {
     auto-fit,
     minmax(clamp(320px, 75%, 450px), 1fr)
   );
+  transition: all 1s ease-in-out;
 }
 
 /* Social */
