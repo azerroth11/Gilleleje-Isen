@@ -101,7 +101,7 @@ document.querySelector("#add").addEventListener("click", e => {
     (smagvariant5 = document.querySelector("#smagsvariant5").value),
   ]
   filterundefined(list)
-  filteredList != ""
+  filteredList != "" && size.value != "undefined"
     ? orderList.push(
         new Order("Is ", iceQuantity(), Price(), Tastes(), SKU())
       ) + populateBasketLists()
@@ -305,20 +305,7 @@ function payment() {
       successurl: "https://azerroth11.github.io/Gilleleje-Isen/success.html",
       language: "da", // default is 'auto', e.g. use browser language
       orderid: "1",
-      items: [
-        {
-          name: "750ml: Vanilje, Chokolade, Lakrids",
-          quantity: 2,
-          total: "89 DKK",
-          sku: "7vcl",
-        },
-        {
-          name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
-          quantity: 1,
-          total: "152 DKK",
-          sku: "15kvclk",
-        },
-      ],
+      items: orderList,
     }),
   })
     .then(res => res.json())
@@ -332,3 +319,18 @@ function payment() {
       )
     })
 }
+
+// [
+//   {
+//     name: "750ml: Vanilje, Chokolade, Lakrids",
+//     quantity: 2,
+//     total: "89 DKK",
+//     sku: "7vcl",
+//   },
+//   {
+//     name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
+//     quantity: 1,
+//     total: "152 DKK",
+//     sku: "15kvclk",
+//   },
+// ]
