@@ -20,15 +20,9 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-#indexBody {
-  background-image: linear-gradient(
-    180deg,
-    var(--light-blue),
-    var(--light-blue),
-    var(--yellow),
-    var(--yellow),
-    var(--yellow)
-  );
+#indexBody,
+#omosBody {
+  background-color: var(--yellow);
 }
 
 #shopBody {
@@ -50,24 +44,77 @@ a:active {
 
 /* Javascript */
 .hidden {
-  display: none !important;
-  /* visibility: hidden; */
-  /* position: absolute; */
+  /* display: none !important; */
+  visibility: hidden;
+  position: absolute;
 }
 
 .undefined {
   border: 2px solid var(--pink);
 }
 
+.banner {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 290px;
+  background-color: var(--yellow);
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  text-align: center;
+  color: #000;
+  animation: banner 3s ease forwards;
+}
+
+.banner p {
+  color: var(--pink);
+  animation: opacity 3s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+@keyframes banner {
+  0% {
+    height: 0;
+  }
+  25% {
+    height: 35px;
+  }
+  75% {
+    height: 35px;
+  }
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Nav */
 nav {
+  width: 100%;
+  background-color: var(--light-blue);
+}
+
+.navigation {
   padding: 0.25rem 2vw;
   height: 10vh;
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  background-color: var(--light-blue);
+  position: relative;
 }
 
 nav img {
@@ -134,21 +181,21 @@ nav ul li a {
 
 .hero .card span {
   color: var(--yellow);
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-align: center;
   cursor: pointer;
 }
 
-.hero .card a {
+.hero .card .button {
   background-color: var(--yellow);
   padding: 0.5rem;
   width: 175px;
   margin: 0 auto;
   border-radius: 15px;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
-/* Vores is & Om os */
+/* Vores is */
 .main {
   max-width: 1440px;
   margin: 0 auto;
@@ -191,6 +238,54 @@ nav ul li a {
   max-width: 175px;
 }
 
+/* Om os */
+.omos-master {
+  background-color: var(--yellow);
+  display: grid;
+  gap: 1rem;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.omos-master h2 {
+  place-self: center;
+  max-width: 45ch;
+}
+
+.omos {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(320px, 75%, 450px), 1fr)
+  );
+  gap: 2rem;
+  margin: 0 auto;
+  padding-bottom: 8vh;
+}
+
+.omos span {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+.omos-img {
+  display: grid;
+  place-items: center;
+}
+
+.omos-img img {
+  width: clamp(320px, 100%, 400px);
+  border-radius: 5px;
+  justify-self: center;
+}
+
+.omos p {
+  font-size: 1.22rem;
+  max-width: 450px;
+  place-self: center;
+}
+
 /* Ice order */
 .buy {
   display: grid;
@@ -204,8 +299,8 @@ nav ul li a {
   display: grid;
   place-items: center;
   gap: 1rem;
-  height: 615px;
-  width: clamp(320px, 75%, 400px);
+  height: 575px;
+  width: clamp(290px, 90%, 400px);
   margin: 2.5vh 0;
   background: hsla(201, 46%, 64%, 0.5);
   border-radius: 15px;
@@ -226,8 +321,8 @@ nav ul li a {
 }
 
 .card img {
-  max-height: 100%;
-  max-width: 100%;
+  max-height: 90%;
+  max-width: 90%;
 }
 
 .button {
@@ -334,7 +429,6 @@ select {
     auto-fit,
     minmax(clamp(320px, 75%, 450px), 1fr)
   );
-  transition: all 1s ease-in-out;
 }
 
 /* Footer */
@@ -366,6 +460,15 @@ footer a {
   font-size: 2.5rem;
   color: var(--yellow);
   place-self: center;
+}
+
+@media screen and (min-width: 900px) and (max-width: 1350px) {
+  .shop {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(clamp(700px, 100%, 750px), 1fr)
+    );
+  }
 }
 
 @media screen and (min-width: 1350px) {

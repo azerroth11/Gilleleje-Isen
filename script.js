@@ -8,6 +8,7 @@ const formCard = document.querySelector(".form-card")
 // Rest
 const size = document.querySelector("#size")
 const checkoutBtn = document.createElement("a")
+const shoppingCart = document.querySelector("#shopping-cart")
 const orderList = []
 
 const cardsd = [isCard, sizeCard, basketCard, formCard]
@@ -17,6 +18,8 @@ init()
 document.querySelector("#prevToShop").addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
+  document.querySelector("#rentACounter").classList.remove("hidden")
+  document.querySelector("#visit").classList.remove("hidden")
 })
 
 document.querySelector("#prevToBasket").addEventListener("click", e => {
@@ -28,8 +31,8 @@ document.querySelector("#prevToBasket").addEventListener("click", e => {
 document.querySelector("#ice-order").addEventListener("click", e => {
   isCard.classList.toggle("hidden")
   sizeCard.classList.toggle("hidden")
-  document.querySelector("#rentACounter").classList.toggle("hidden")
-  document.querySelector("#visit").classList.toggle("hidden")
+  document.querySelector("#rentACounter").classList.add("hidden")
+  document.querySelector("#visit").classList.add("hidden")
 })
 
 const addMoreBtn = document.querySelector("#btn-back")
@@ -38,7 +41,7 @@ addMoreBtn.addEventListener("click", e => {
   sizeCard.classList.remove("hidden")
 })
 
-document.querySelector("#shopping-cart").addEventListener("click", e => {
+shoppingCart.addEventListener("click", e => {
   isCard.classList.add("hidden")
   sizeCard.classList.add("hidden")
   basketCard.classList.remove("hidden")
@@ -104,12 +107,24 @@ document.querySelector("#add").addEventListener("click", e => {
   filteredList != "" && size.value != "undefined"
     ? orderList.push(
         new Order("Is ", iceQuantity(), Price(), Tastes(), SKU())
-      ) + populateBasketLists()
+      ) +
+      populateBasketLists() +
+      addedBanner()
     : alert("You must pick a size and taste")
   basketAmount()
   updateBasket()
   resetForm()
 })
+
+function addedBanner() {
+  shoppingCart.appendChild(document.createElement("div"))
+  shoppingCart.lastChild.className = "banner"
+  document.querySelector(".banner").appendChild(document.createElement("p"))
+  document.querySelector(".banner").firstChild.innerText = "Added to basket !"
+  setTimeout(function () {
+    document.querySelector(".banner").remove()
+  }, 3000)
+}
 
 // Calculate the total price
 function totalPrice() {
@@ -305,7 +320,20 @@ function payment() {
       successurl: "https://azerroth11.github.io/Gilleleje-Isen/success.html",
       language: "da", // default is 'auto', e.g. use browser language
       orderid: "1",
-      items: orderList,
+      items: [
+        {
+          name: "750ml: Vanilje, Chokolade, Lakrids",
+          quantity: 2,
+          total: "89 DKK",
+          sku: "7vcl",
+        },
+        {
+          name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
+          quantity: 1,
+          total: "152 DKK",
+          sku: "15kvclk",
+        },
+      ],
     }),
   })
     .then(res => res.json())
@@ -319,18 +347,3 @@ function payment() {
       )
     })
 }
-
-// [
-//   {
-//     name: "750ml: Vanilje, Chokolade, Lakrids",
-//     quantity: 2,
-//     total: "89 DKK",
-//     sku: "7vcl",
-//   },
-//   {
-//     name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
-//     quantity: 1,
-//     total: "152 DKK",
-//     sku: "15kvclk",
-//   },
-// ]
