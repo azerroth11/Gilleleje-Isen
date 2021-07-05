@@ -56,6 +56,8 @@ $("btn-back").addEventListener("click", () => {
 shoppingCart.addEventListener("click", () => {
     isCard.classList.add("hidden")
     sizeCard.classList.add("hidden")
+    $("rentACounter").classList.add("hidden")
+    $("visit").classList.add("hidden")
     basketCard.classList.remove("hidden")
 })
 
