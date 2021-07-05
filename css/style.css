@@ -2,481 +2,482 @@
 
 /* Commons */
 :root {
-  --pink: hsl(352, 79%, 67%);
-  --light-blue: hsl(202, 56%, 86%);
-  --dark-blue: hsl(196, 30%, 51%);
-  --yellow: hsl(53, 100%, 94%);
+    --pink: hsl(352, 79%, 67%);
+    --light-blue: hsl(202, 56%, 86%);
+    --dark-blue: hsl(196, 30%, 51%);
+    --yellow: hsl(53, 100%, 94%);
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  position: relative;
-  min-height: 100vh;
-  font-family: "Lato", sans-serif;
+    position: relative;
+    min-height: 100vh;
+    font-family: "Lato", sans-serif;
 }
 
 #indexBody,
-#omosBody {
-  background-color: var(--yellow);
+#omosBody,
+#successBody {
+    background-color: var(--yellow);
 }
 
 #shopBody {
-  background-color: var(--light-blue);
+    background-color: var(--light-blue);
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .hero a,
 .buy a {
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
 a:active {
-  scale: 0.95;
+    scale: 0.95;
 }
 
 /* Javascript */
 .hidden {
-  /* display: none !important; */
-  visibility: hidden;
-  position: absolute;
+    /* display: none !important; */
+    visibility: hidden;
+    position: absolute;
 }
 
 .undefined {
-  border: 2px solid var(--pink);
+    border: 2px solid var(--pink);
 }
 
 .banner {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  max-width: 290px;
-  background-color: var(--yellow);
-  position: absolute;
-  top: 10vh;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.2rem;
-  text-align: center;
-  color: #000;
-  animation: banner 3s ease forwards;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 290px;
+    background-color: var(--yellow);
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    text-align: center;
+    color: #000;
+    animation: banner 3s ease forwards;
 }
 
 .banner p {
-  color: var(--pink);
-  animation: opacity 3s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+    color: var(--pink);
+    animation: opacity 3s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
 }
 
 @keyframes banner {
-  0% {
-    height: 0;
-  }
-  25% {
-    height: 35px;
-  }
-  75% {
-    height: 35px;
-  }
-  100% {
-    height: 0;
-  }
+    0% {
+        height: 0;
+    }
+    25% {
+        height: 35px;
+    }
+    75% {
+        height: 35px;
+    }
+    100% {
+        height: 0;
+    }
 }
 
 @keyframes opacity {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /* Nav */
 nav {
-  width: 100%;
-  background-color: var(--light-blue);
+    width: 100%;
+    background-color: var(--light-blue);
 }
 
 .navigation {
-  padding: 0.25rem 2vw;
-  height: 10vh;
-  max-width: 1440px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
+    padding: 0.25rem 2vw;
+    height: 10vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
 }
 
 nav img {
-  cursor: pointer;
-  height: 9vh;
+    cursor: pointer;
+    height: 9vh;
 }
 
 nav ul {
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
-  list-style: none;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    list-style: none;
 }
 
 nav ul li a {
-  font-size: 1.5rem;
-  margin-left: 1.5rem;
-  color: var(--yellow);
-  text-shadow: 1px 1px 3px #000;
+    font-size: 1.5rem;
+    margin-left: 1.5rem;
+    color: var(--yellow);
+    text-shadow: 1px 1px 3px #000;
 }
 
 .fa-instagram,
 .fa-facebook-square {
-  font-size: 1.8rem;
+    font-size: 1.8rem;
 }
 
 #shopping-cart {
-  text-decoration: none;
-  color: var(--pink);
-  text-shadow: 1px 1px 3px #fff;
-  padding: 0.5rem 1rem;
-  background-color: var(--yellow);
-  border-radius: 5px;
+    text-decoration: none;
+    color: var(--pink);
+    text-shadow: 1px 1px 3px #fff;
+    padding: 0.5rem 1rem;
+    background-color: var(--yellow);
+    border-radius: 5px;
 }
 
 /* Hero */
 .hero {
-  width: 100vw;
-  height: 90vh;
-  background: url("../img/background.jpg") no-repeat right top;
-  background-size: cover;
-  display: grid;
-  place-items: center;
+    width: 100vw;
+    height: 90vh;
+    background: url("../img/backgroundNoLogo.jpg") no-repeat right top;
+    background-size: cover;
+    display: grid;
+    place-items: center;
 }
 
 .hero .card {
-  margin-top: -5vh;
-  height: auto;
-  gap: 2.5rem;
-  background-color: rgba(121, 176, 205, 0.8);
+    margin-top: -5vh;
+    height: auto;
+    gap: 2.5rem;
+    background-color: rgba(121, 176, 205, 0.8);
 }
 
 .hero .card h2 {
-  padding-bottom: 0.5rem;
-  font-size: 1.6rem;
-  color: #fff;
-  text-shadow: 1px 1px 5px #000;
+    padding-bottom: 0.5rem;
+    font-size: 1.6rem;
+    color: #fff;
+    text-shadow: 1px 1px 5px #000;
 }
 
 .hero .card .sale-pink {
-  color: var(--pink);
-  text-shadow: 1px 1px 5px #fff;
+    color: var(--pink);
+    text-shadow: 1px 1px 5px #fff;
 }
 
 .hero .card span {
-  color: var(--yellow);
-  font-size: 1.8rem;
-  text-align: center;
-  cursor: pointer;
+    color: var(--yellow);
+    font-size: 1.8rem;
+    text-align: center;
+    cursor: pointer;
 }
 
 .hero .card .button {
-  background-color: var(--yellow);
-  padding: 0.5rem;
-  width: 175px;
-  margin: 0 auto;
-  border-radius: 15px;
-  font-size: 1.6rem;
+    background-color: var(--yellow);
+    padding: 0.5rem;
+    width: 175px;
+    margin: 0 auto;
+    border-radius: 15px;
+    font-size: 1.6rem;
 }
 
 /* Vores is */
 .main {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-bottom: 8vh;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(clamp(320px, 75%, 450px), 1fr)
-  );
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-bottom: 8vh;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(clamp(320px, 75%, 450px), 1fr)
+    );
 }
 
 .block {
-  padding: 2rem 2rem 4rem 2rem;
-  background-color: var(--yellow);
-  display: grid;
-  place-items: center;
-  gap: 1rem;
+    padding: 2rem 2rem 4rem 2rem;
+    background-color: var(--yellow);
+    display: grid;
+    place-items: center;
+    gap: 1rem;
 }
 
 .block img {
-  width: clamp(320px, 100%, 400px);
-  border-radius: 5px;
-  justify-self: center;
+    width: clamp(320px, 100%, 400px);
+    border-radius: 5px;
+    justify-self: center;
 }
 
 .block p {
-  font-size: 1.22rem;
-  max-width: 450px;
+    font-size: 1.22rem;
+    max-width: 450px;
 }
 
 .block a {
-  justify-self: center;
-  background-color: var(--pink);
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  max-width: 175px;
+    justify-self: center;
+    background-color: var(--pink);
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    max-width: 175px;
 }
 
 /* Om os */
 .omos-master {
-  background-color: var(--yellow);
-  display: grid;
-  gap: 1rem;
-  min-height: 80vh;
-  margin: 0 auto;
-  padding: 1rem;
+    background-color: var(--yellow);
+    display: grid;
+    gap: 1rem;
+    min-height: 80vh;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 .omos-master h2 {
-  place-self: center;
-  max-width: 45ch;
+    place-self: center;
+    max-width: 45ch;
 }
 
 .omos {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(clamp(320px, 75%, 450px), 1fr)
-  );
-  gap: 2rem;
-  margin: 0 auto;
-  padding-bottom: 8vh;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(clamp(320px, 75%, 450px), 1fr)
+    );
+    gap: 2rem;
+    margin: 0 auto;
+    padding-bottom: 8vh;
 }
 
 .omos span {
-  color: var(--pink);
-  font-weight: 700;
+    color: var(--pink);
+    font-weight: 700;
 }
 
 .omos-img {
-  display: grid;
-  place-items: center;
+    display: grid;
+    place-items: center;
 }
 
 .omos-img img {
-  width: clamp(320px, 100%, 400px);
-  border-radius: 5px;
-  justify-self: center;
+    width: clamp(320px, 100%, 400px);
+    border-radius: 5px;
+    justify-self: center;
 }
 
 .omos p {
-  font-size: 1.22rem;
-  max-width: 450px;
-  place-self: center;
+    font-size: 1.22rem;
+    max-width: 450px;
+    place-self: center;
 }
 
 /* Ice order */
 .buy {
-  display: grid;
-  max-width: 540px;
-  margin: 0 auto;
-  place-items: center;
-  background-color: var(--light-blue);
+    display: grid;
+    max-width: 540px;
+    margin: 0 auto;
+    place-items: center;
+    background-color: var(--light-blue);
 }
 
 .card {
-  display: grid;
-  place-items: center;
-  gap: 1rem;
-  height: 575px;
-  width: clamp(290px, 90%, 400px);
-  margin: 2.5vh 0;
-  background: hsla(201, 46%, 64%, 0.5);
-  border-radius: 15px;
-  overflow: hidden;
-  text-align: center;
-  padding: 2rem;
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+    height: 575px;
+    width: clamp(290px, 90%, 400px);
+    margin: 2.5vh 0;
+    background: hsla(201, 46%, 64%, 0.5);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    padding: 2rem;
 }
 
 .size-card,
 .basket-card,
 .form-card {
-  height: auto;
+    height: auto;
 }
 
 .card h2 {
-  color: hsl(53, 100%, 94%);
-  font-size: 1.4rem;
+    color: hsl(53, 100%, 94%);
+    font-size: 1.4rem;
 }
 
 .card img {
-  max-height: 90%;
-  max-width: 90%;
+    max-height: 90%;
+    max-width: 90%;
 }
 
 .button {
-  padding: 0.5rem 1rem;
-  background-color: var(--yellow);
-  display: block;
-  cursor: pointer;
-  width: 200px;
-  border-radius: 5px;
-  color: var(--pink);
-  font-weight: bold;
-  font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--yellow);
+    display: block;
+    cursor: pointer;
+    width: 200px;
+    border-radius: 5px;
+    color: var(--pink);
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 #add {
-  position: relative;
+    position: relative;
 }
 
 select {
-  width: 200px;
-  padding: 0.5rem;
-  font-size: 1rem;
+    width: 200px;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
 .choice h3 {
-  padding-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .add-taste {
-  color: var(--pink);
-  font-size: 1.25rem;
+    color: var(--pink);
+    font-size: 1.25rem;
 }
 
 .card ul {
-  list-style: none;
+    list-style: none;
 }
 
 .fa-minus-circle {
-  color: var(--pink);
-  cursor: pointer;
-  padding-right: 0.5rem;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -155px;
-  margin-top: -10px;
+    color: var(--pink);
+    cursor: pointer;
+    padding-right: 0.5rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -155px;
+    margin-top: -10px;
 }
 
 .medium-basket-list,
 .large-basket-list {
-  width: 100%;
+    width: 100%;
 }
 
 .basket-list {
-  position: relative;
-  background-color: var(--light-blue);
-  margin-bottom: 1.2rem;
-  padding: 0.75rem 0;
-  font-size: 1.2rem;
-  list-style: none;
-  border-radius: 5px;
+    position: relative;
+    background-color: var(--light-blue);
+    margin-bottom: 1.2rem;
+    padding: 0.75rem 0;
+    font-size: 1.2rem;
+    list-style: none;
+    border-radius: 5px;
 }
 
 /* Form */
 #form {
-  display: grid;
-  place-items: center;
-  gap: 0.25rem;
+    display: grid;
+    place-items: center;
+    gap: 0.25rem;
 }
 
 #form label {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 #form label span {
-  color: red;
+    color: red;
 }
 
 #form input {
-  margin-bottom: 0.75rem;
-  border-radius: 5px;
-  padding: 0.25rem;
-  width: 200px;
+    margin-bottom: 0.75rem;
+    border-radius: 5px;
+    padding: 0.25rem;
+    width: 200px;
 }
 
 #form input:active,
 #form input:focus {
-  outline: none;
-  border: 2px solid var(--pink);
+    outline: none;
+    border: 2px solid var(--pink);
 }
 
 #form button {
-  margin-top: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 /* Shop page */
 .shop {
-  padding-bottom: 10vh;
-  max-width: 1440px;
-  min-height: 80vh;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(clamp(320px, 75%, 450px), 1fr)
-  );
+    padding-bottom: 10vh;
+    max-width: 1440px;
+    min-height: 80vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(clamp(320px, 75%, 450px), 1fr)
+    );
 }
 
 /* Footer */
 footer {
-  width: 100%;
-  background-color: #000;
-  position: absolute;
-  bottom: 0;
+    width: 100%;
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: 3.5fr 1fr;
-  min-height: 8vh;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 1rem;
-  line-height: 1rem;
-  color: grey;
+    display: grid;
+    grid-template-columns: 3.5fr 1fr;
+    min-height: 8vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1rem;
+    line-height: 1rem;
+    color: grey;
 }
 
 .adress {
-  display: grid;
-  gap: 0.5rem;
-  padding-left: 5vw;
+    display: grid;
+    gap: 0.5rem;
+    padding-left: 5vw;
 }
 
 footer a {
-  font-size: 2.5rem;
-  color: var(--yellow);
-  place-self: center;
+    font-size: 2.5rem;
+    color: var(--yellow);
+    place-self: center;
 }
 
 @media screen and (min-width: 900px) and (max-width: 1350px) {
-  .shop {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(clamp(700px, 100%, 750px), 1fr)
-    );
-  }
+    .shop {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(clamp(700px, 100%, 750px), 1fr)
+        );
+    }
 }
 
 @media screen and (min-width: 1350px) {
-  .buy {
-    order: 2;
-  }
+    .buy {
+        order: 2;
+    }
 
-  #rentACounter {
-    order: 1;
-  }
+    #rentACounter {
+        order: 1;
+    }
 }

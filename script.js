@@ -1,4 +1,5 @@
 let strict
+
 // Cards
 const isCard = document.querySelector(".is-card")
 const sizeCard = document.querySelector(".size-card")
@@ -6,346 +7,329 @@ const basketCard = document.querySelector(".basket-card")
 const formCard = document.querySelector(".form-card")
 
 // Rest
-const size = document.querySelector("#size")
 const checkoutBtn = document.createElement("a")
-const shoppingCart = document.querySelector("#shopping-cart")
+const shoppingCart = $("shopping-cart")
 const orderList = []
 
-const cardsd = [isCard, sizeCard, basketCard, formCard]
+let filteredList
 
-init()
+function $(id) {
+    return document.getElementById(id)
+}
 
-document.querySelector("#prevToShop").addEventListener("click", e => {
-  isCard.classList.toggle("hidden")
-  sizeCard.classList.toggle("hidden")
-  document.querySelector("#rentACounter").classList.remove("hidden")
-  document.querySelector("#visit").classList.remove("hidden")
+;(() => {
+    // Init
+    const btn = document.createElement("a")
+    btn.setAttribute("id", "btn-back")
+    btn.innerText = "Tilføj mere !"
+    btn.classList.add("button")
+    checkoutBtn.classList.add("button")
+    basketCard.appendChild(btn)
+    basketCard.appendChild(checkoutBtn)
+})()
+
+$("prevToShop").addEventListener("click", () => {
+    isCard.classList.toggle("hidden")
+    sizeCard.classList.toggle("hidden")
+    $("rentACounter").classList.remove("hidden")
+    $("visit").classList.remove("hidden")
 })
 
-document.querySelector("#prevToBasket").addEventListener("click", e => {
-  formCard.classList.toggle("hidden")
-  basketCard.classList.toggle("hidden")
+$("prevToBasket").addEventListener("click", () => {
+    formCard.classList.toggle("hidden")
+    basketCard.classList.toggle("hidden")
 })
 
 // Cards display
-document.querySelector("#ice-order").addEventListener("click", e => {
-  isCard.classList.toggle("hidden")
-  sizeCard.classList.toggle("hidden")
-  document.querySelector("#rentACounter").classList.add("hidden")
-  document.querySelector("#visit").classList.add("hidden")
+$("ice-order").addEventListener("click", () => {
+    isCard.classList.toggle("hidden")
+    sizeCard.classList.toggle("hidden")
+    $("rentACounter").classList.add("hidden")
+    $("visit").classList.add("hidden")
 })
 
-const addMoreBtn = document.querySelector("#btn-back")
-addMoreBtn.addEventListener("click", e => {
-  basketCard.classList.add("hidden")
-  sizeCard.classList.remove("hidden")
+$("btn-back").addEventListener("click", () => {
+    basketCard.classList.add("hidden")
+    sizeCard.classList.remove("hidden")
 })
 
-shoppingCart.addEventListener("click", e => {
-  isCard.classList.add("hidden")
-  sizeCard.classList.add("hidden")
-  basketCard.classList.remove("hidden")
-  checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
+shoppingCart.addEventListener("click", () => {
+    isCard.classList.add("hidden")
+    sizeCard.classList.add("hidden")
+    basketCard.classList.remove("hidden")
 })
 
-checkoutBtn.addEventListener("click", e => {
-  basketCard.classList.add("hidden")
-  formCard.classList.remove("hidden")
+checkoutBtn.addEventListener("click", () => {
+    basketCard.classList.add("hidden")
+    formCard.classList.remove("hidden")
 })
 
+const size = $("size")
 // Display correct number of tastes options
-size.addEventListener("input", e => {
-  const choice1 = document.querySelector("#choice1")
-  const choice2 = document.querySelector("#choice2")
-  const choice3 = document.querySelector("#choice3")
-  const choice4 = document.querySelector("#choice4")
-  const choice5 = document.querySelector("#choice5")
-  if (size.value == "medium") {
-    choice1.classList.remove("hidden")
-    choice2.classList.remove("hidden")
-    choice3.classList.remove("hidden")
-    choice4.classList.add("hidden")
-    choice5.classList.add("hidden")
-  } else if (size.value == "large") {
-    choice1.classList.remove("hidden")
-    choice2.classList.remove("hidden")
-    choice3.classList.remove("hidden")
-    choice4.classList.remove("hidden")
-    choice5.classList.remove("hidden")
-  } else {
-    choice1.classList.add("hidden")
-    choice2.classList.add("hidden")
-    choice3.classList.add("hidden")
-    choice4.classList.add("hidden")
-    choice5.classList.add("hidden")
-  }
+size.addEventListener("input", () => {
+    const choice1 = $("choice1")
+    const choice2 = $("choice2")
+    const choice3 = $("choice3")
+    const choice4 = $("choice4")
+    const choice5 = $("choice5")
+    if (size.value === "medium") {
+        choice1.classList.remove("hidden")
+        choice2.classList.remove("hidden")
+        choice3.classList.remove("hidden")
+        choice4.classList.add("hidden")
+        choice5.classList.add("hidden")
+    } else if (size.value === "large") {
+        choice1.classList.remove("hidden")
+        choice2.classList.remove("hidden")
+        choice3.classList.remove("hidden")
+        choice4.classList.remove("hidden")
+        choice5.classList.remove("hidden")
+    } else {
+        choice1.classList.add("hidden")
+        choice2.classList.add("hidden")
+        choice3.classList.add("hidden")
+        choice4.classList.add("hidden")
+        choice5.classList.add("hidden")
+    }
 })
 
 // Adds border to undefined items
-document.addEventListener("click", e => {
-  const smagvariant = document.querySelectorAll(".select")
-  const select = Array.from(smagvariant)
-  select.forEach(e => {
-    if (e.value == "undefined") {
-      e.classList.add("undefined")
-    } else {
-      e.classList.remove("undefined")
+size.addEventListener("click", evt => {
+    const smagVariant = document.querySelectorAll(".select")
+    for (const elem of smagVariant) {
+        if (elem.value === "undefined") {
+            elem.classList.add("undefined")
+        } else {
+            elem.classList.remove("undefined")
+        }
     }
-  })
 })
 
 // Add to basket event
-document.querySelector("#add").addEventListener("click", e => {
-  const list = [
-    (smagvariant1 = document.querySelector("#smagsvariant1").value),
-    (smagvariant2 = document.querySelector("#smagsvariant2").value),
-    (smagvariant3 = document.querySelector("#smagsvariant3").value),
-    (smagvariant4 = document.querySelector("#smagsvariant4").value),
-    (smagvariant5 = document.querySelector("#smagsvariant5").value),
-  ]
-  filterundefined(list)
-  filteredList != "" && size.value != "undefined"
-    ? orderList.push(
-        new Order("Is ", iceQuantity(), Price(), Tastes(), SKU())
-      ) +
-      populateBasketLists() +
-      addedBanner()
-    : alert("You must pick a size and taste")
-  basketAmount()
-  updateBasket()
-  resetForm()
+$("add").addEventListener("click", e => {
+    const list = [
+        (smagvariant1 = $("smagsvariant1").value),
+        (smagvariant2 = $("smagsvariant2").value),
+        (smagvariant3 = $("smagsvariant3").value),
+        (smagvariant4 = $("smagsvariant4").value),
+        (smagvariant5 = $("smagsvariant5").value),
+    ]
+    filterUndefined(list)
+    if (filteredList.length > 0 && size.value !== "undefined") {
+        orderList.push(
+            new Order({
+                name: "Is ",
+                quantity: iceQuantity(),
+                price: Price(),
+                tastes: Tastes(),
+                SKU: SKU(),
+            })
+        )
+        populateBasketLists()
+        addedBanner()
+    } else {
+        alert("Du skal vælge størrelse og smag.")
+    }
+    cartItemCount()
+    updateBasket()
+    resetForm()
 })
 
 function addedBanner() {
-  shoppingCart.appendChild(document.createElement("div"))
-  shoppingCart.lastChild.className = "banner"
-  document.querySelector(".banner").appendChild(document.createElement("p"))
-  document.querySelector(".banner").firstChild.innerText = "Added to basket !"
-  setTimeout(function () {
-    document.querySelector(".banner").remove()
-  }, 3000)
+    shoppingCart.appendChild(document.createElement("div"))
+    shoppingCart.lastChild.className = "banner"
+    document.querySelector(".banner").appendChild(document.createElement("p"))
+    document.querySelector(".banner").firstChild.innerText =
+        "Tilføjet til kurv !"
+    setTimeout(() => document.querySelector(".banner").remove(), 3000)
 }
 
 // Calculate the total price
 function totalPrice() {
-  i = 0
-  orderList.forEach(e => (i += e.price))
-  return i
+    let i = 0
+    orderList.forEach(item => (i += item.price))
+    return i
 }
 
 // Object constructor
-function Order(type, quantity, price, details, SKU) {
-  this.type = type
-  this.quantity = quantity
-  this.price = price
-  this.details = details
-  this.SKU = SKU
+function Order(obj) {
+    this.name = obj.name
+    this.quantity = obj.quantity
+    this.price = obj.price
+    this.tastes = obj.tastes
+    this.SKU = obj.SKU
 }
 
 function iceQuantity() {
-  if (size.value == "medium") {
-    return "750ml"
-  } else if (size.value == "large") {
-    return "1500ml"
-  }
+    if (size.value === "medium") {
+        return "750ml"
+    } else if (size.value === "large") {
+        return "1500ml"
+    }
 }
 
 function Price() {
-  if (size.value == "medium") {
-    return 89
-  } else if (size.value == "large") {
-    return 152
-  }
+    if (size.value === "medium") {
+        return 89
+    } else if (size.value === "large") {
+        return 152
+    }
 }
 
-function filterundefined(list) {
-  filteredList = list.filter(e => e != "undefined")
+function filterUndefined(list) {
+    filteredList = list.filter(e => e !== "undefined")
 }
 
 function Tastes() {
-  return filteredList
+    return filteredList
 }
 
 function SKU() {
-  return `Is${iceQuantity() == "750ml" ? "-M-" : "-L-"}${filteredList
-    .map(el => el.slice(0, 3))
-    .join("")}`
+    return `Is${iceQuantity() === "750ml" ? "-M-" : "-L-"}${filteredList
+        .map(el => el.slice(0, 3))
+        .join("")}`
 }
 
 // Basket number
-function basketAmount() {
-  const cartItemCount = document.querySelector("#itemCount")
-  cartItemCount.innerText = " " + orderList.length
+function cartItemCount() {
+    const cartItemCount = $("itemCount")
+    cartItemCount.innerText = " " + orderList.length
 }
 
 function updateBasket() {
-  const emptyBasket = document.querySelector(".empty-basket")
-  const mediumBasket = document.querySelector(".medium-basket")
-  const largeBasket = document.querySelector(".large-basket")
-  orderList.length != 0
-    ? emptyBasket.classList.add("hidden")
-    : emptyBasket.classList.remove("hidden")
-  showBasketLists(mediumBasket, largeBasket)
+    const emptyBasket = document.querySelector(".empty-basket")
+    const mediumBasket = document.querySelector(".medium-basket")
+    const largeBasket = document.querySelector(".large-basket")
+    emptyBasket.classList.toggle("hidden", orderList.length != 0)
+    checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
+    showBasketLists(mediumBasket, largeBasket)
 }
 
 function showBasketLists(mediumBasket, largeBasket) {
-  orderList.filter(obj => obj.quantity == "750ml").length == 0
-    ? mediumBasket.classList.add("hidden")
-    : mediumBasket.classList.remove("hidden"),
+    orderList.filter(obj => obj.quantity === "750ml").length === 0
+        ? mediumBasket.classList.add("hidden")
+        : mediumBasket.classList.remove("hidden")
     orderList.filter(obj => obj.quantity == "1500ml").length == 0
-      ? largeBasket.classList.add("hidden")
-      : largeBasket.classList.remove("hidden")
+        ? largeBasket.classList.add("hidden")
+        : largeBasket.classList.remove("hidden")
 }
 
 function populateBasketLists() {
-  const mediumBasketList = document.querySelector(".medium-basket-list")
-  const largeBasketList = document.querySelector(".large-basket-list")
-  if (orderList[orderList.length - 1].quantity == "750ml") {
-    mediumBasketList.appendChild(document.createElement("ul"))
-    mediumBasketList.lastChild.className = "basket-list"
-    mediumBasketList.lastChild.setAttribute(
-      "id",
-      `${orderList[orderList.length - 1].SKU}`
+    let basketList
+    if (orderList[orderList.length - 1].quantity === "750ml") {
+        basketList = document.querySelector(".medium-basket-list")
+    } else if (orderList[orderList.length - 1].quantity === "1500ml") {
+        basketList = document.querySelector(".large-basket-list")
+    } else {
+        return alert("Something went wrong at populateBasketLists()")
+    }
+    basketList.appendChild(document.createElement("ul"))
+    basketList.lastChild.className = "basket-list"
+    basketList.lastChild.setAttribute(
+        "id",
+        `${orderList[orderList.length - 1].SKU}`
     )
-    createRemoveBtn()
-    mediumBasketList.lastChild.appendChild(removeBtn)
-    orderList[orderList.length - 1].details.forEach(e => {
-      mediumBasketList.lastChild.appendChild(
-        document.createElement("li")
-      ).innerText = `${e}`
+    basketList.lastChild.appendChild(createRemoveBtn())
+    orderList[orderList.length - 1].tastes.forEach(tastes => {
+        basketList.lastChild.appendChild(
+            document.createElement("li")
+        ).innerText = `${tastes}`
     })
-  } else if (orderList[orderList.length - 1].quantity == "1500ml") {
-    largeBasketList.appendChild(document.createElement("ul"))
-    largeBasketList.lastChild.className = "basket-list"
-    largeBasketList.lastChild.setAttribute(
-      "id",
-      `${orderList[orderList.length - 1].SKU}`
-    )
-    createRemoveBtn()
-    largeBasketList.lastChild.appendChild(removeBtn)
-    orderList[orderList.length - 1].details.forEach(e => {
-      largeBasketList.lastChild.appendChild(
-        document.createElement("li")
-      ).innerText = `${e}`
-    })
-  } else {
-    console.log("Something went wrong at populateBasketLists()")
-  }
+    cartItemCount()
+    updateBasket()
 }
 
 // Reset form after submit
 function resetForm() {
-  const smagvariant = document.querySelectorAll(".select")
-  const select = Array.from(smagvariant)
-  select.forEach(e => {
-    e.value = "undefined"
-  })
+    const smagVariant = document.querySelectorAll(".select")
+    for (const elem of smagVariant) {
+        elem.value = "undefined"
+    }
 }
 
 // Remove Button
 function createRemoveBtn() {
-  removeBtn = document.createElement("i")
-  removeBtn.classList.add("fas", "fa-minus-circle")
-  removeBtnArr = []
-  removeBtnArr.push(removeBtn)
-  removeBtnArr.forEach(removeBtn => {
-    removeBtn.addEventListener("click", e => {
-      const removeIndex = orderList
-        .map(function (item) {
-          return item.SKU
-        })
-        .indexOf(`${removeBtn.parentNode.id}`)
-      orderList.splice(removeIndex, 1)
-      removeBtn.parentNode.remove()
-      removeBtn.remove(e)
-      basketAmount()
-      updateBasket()
-      checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
+    const removeBtn = document.createElement("i")
+    removeBtn.classList.add("fas", "fa-minus-circle")
+    removeBtn.addEventListener("click", () => {
+        const removeIndex = orderList
+            .map(item => item.SKU)
+            .indexOf(`${removeBtn.parentNode.id}`)
+        orderList.splice(removeIndex, 1)
+        removeBtn.parentNode.remove()
+        cartItemCount()
+        updateBasket()
     })
-  })
-}
-
-// Init parameters
-function init() {
-  const addMoreBtn = document.createElement("a")
-  addMoreBtn.setAttribute("id", "btn-back")
-  addMoreBtn.innerText = "Add more!"
-  addMoreBtn.classList.add("button")
-  checkoutBtn.classList.add("button")
-  basketCard.appendChild(addMoreBtn)
-  basketCard.appendChild(checkoutBtn)
+    return removeBtn
 }
 
 // Order form
-document.querySelector("#pay").addEventListener("click", e => {
-  e.preventDefault()
-  let person = {
-    firstName: "",
-    lastName: "",
-    companyName: "",
-    email: "",
-    pickupDate: "",
-  }
-  person.firstName = document.querySelector("#fname").value
-  person.lastName = document.querySelector("#lname").value
-  person.companyName = document.querySelector("#company-name").value
-  person.email = document.querySelector("#input-mail").value
-  person.pickupDate = document.querySelector("#pickup-date").value
-  if (
-    document.querySelector("#fname").checkValidity() &&
-    document.querySelector("#lname").checkValidity() &&
-    document.querySelector("#input-mail").checkValidity() &&
-    document.querySelector("#pickup-date").checkValidity()
-  ) {
-    // Pass totalPrice(), person, orderList to API
-    payment()
-  } else {
-    alert("Make sure to complete all required fields")
-  }
+$("pay").addEventListener("click", evt => {
+    evt.preventDefault()
+
+    const person = {
+        firstName: $("fname").value,
+        lastName: $("lname").value,
+        companyName: $("company-name").value,
+        email: $("input-mail").value,
+        pickupDate: $("pickup-date").value,
+    }
+
+    if (
+        $("fname").checkValidity() &&
+        $("lname").checkValidity() &&
+        $("input-mail").checkValidity() &&
+        $("pickup-date").checkValidity()
+    ) {
+        payment()
+    } else {
+        alert("Make sure to complete all required fields")
+    }
 })
 
 function payment() {
-  const apikey =
-    "4417:TFYlzvKYN5eAgehM7Oig+94MWl8Cv7ABdCQEBDQduBNxk0oEDw/dzY0Eh2ifnHuU"
-  const successURL = "https://azerroth11.github.io/Gilleleje-Isen/success.html"
-  const language = "da" // default is to use browser language
+    const apikey =
+        "4417:TFYlzvKYN5eAgehM7Oig+94MWl8Cv7ABdCQEBDQduBNxk0oEDw/dzY0Eh2ifnHuU"
+    const successURL = "https://azerroth11.github.io/success.html"
+    const language = "da" // default is to use browser language
 
-  fetch("https://api.test.scanpay.dk/v1/new", {
-    method: "POST",
-    headers: {
-      Authorization: "Basic" + window.btoa(apikey),
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      successurl: "https://azerroth11.github.io/Gilleleje-Isen/success.html",
-      language: "da", // default is 'auto', e.g. use browser language
-      orderid: "1",
-      items: orderList,
-    }),
-  })
-    .then(res => res.json())
-    .then(o => {
-      // https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
-      window.location.replace(o.url)
+    const newOrderList = []
+    for (const obj of orderList) {
+        let name = obj.quantity + ": "
+
+        for (let i = 0; i < obj.tastes.length; i++) {
+            name += obj.tastes[i]
+            if (i < obj.tastes.length - 1) name += ", "
+        }
+        newOrderList.push({
+            name: name,
+            quantity: 1,
+            total: obj.price + " DKK",
+            sku: obj.SKU,
+        })
+    }
+
+    fetch("https://api.test.scanpay.dk/v1/new", {
+        method: "POST",
+        headers: {
+            Authorization: "Basic" + window.btoa(apikey),
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            successurl: "https://azerroth11.github.io/success.html",
+            language: "da", // default is 'auto', e.g. use browser language
+            orderid: "1",
+            items: newOrderList,
+        }),
     })
-    .catch(() => {
-      alert(
-        "Something went wrong. Please contact support to get a new payment link"
-      )
-    })
+        .then(res => res.json())
+        .then(o => {
+            // https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
+            window.location.replace(o.url)
+        })
+        .catch(() => {
+            alert(
+                "Something went wrong. Please contact support to get a new payment link"
+            )
+        })
 }
-
-// [
-//   {
-//     name: "750ml: Vanilje, Chokolade, Lakrids",
-//     quantity: 2,
-//     total: "89 DKK",
-//     sku: "7vcl",
-//   },
-//   {
-//     name: "1500ml: Kaffe, Vanilje, Chokolade, Lakrids, Kaffe",
-//     quantity: 1,
-//     total: "152 DKK",
-//     sku: "15kvclk",
-//   },
-// ]
