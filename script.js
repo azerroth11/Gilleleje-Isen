@@ -290,7 +290,8 @@ $("pay").addEventListener("click", evt => {
 function payment() {
     const apikey =
         "4417:TFYlzvKYN5eAgehM7Oig+94MWl8Cv7ABdCQEBDQduBNxk0oEDw/dzY0Eh2ifnHuU"
-    const successURL = "https://azerroth11.github.io/success.html"
+    const successURL =
+        "https://azerroth11.github.io/Gilleleje-Isen/success.html"
     const language = "da" // default is to use browser language
 
     const newOrderList = []
@@ -316,7 +317,8 @@ function payment() {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            successurl: "https://azerroth11.github.io/success.html",
+            successurl:
+                "https://azerroth11.github.io/Gilleleje-Isen/success.html",
             language: "da", // default is 'auto', e.g. use browser language
             orderid: "1",
             items: newOrderList,
