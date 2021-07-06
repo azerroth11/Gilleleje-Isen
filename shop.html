@@ -243,6 +243,8 @@
                         <input id="lname" type="text" required />
                         <label for="company-name">Virksomhed (valgfri)</label>
                         <input id="company-name" type="text" />
+                        <label for="phone">Telefon<span>*</span></label>
+                        <input type="phone" id="phone" required />
                         <label for="input-email"
                             >Email-adresse<span>*</span></label
                         >
@@ -251,6 +253,14 @@
                             >Afhentning<span>*</span></label
                         >
                         <input id="pickup-date" type="date" required />
+                        <label for="commentary">Kommentar</label>
+                        <input type="text" id="commentary" />
+                        <!-- <textarea
+                            name="commentary"
+                            id="commentary"
+                            cols="24"
+                            rows="1"
+                        ></textarea> -->
                         <a id="pay" class="button">Til betaling</a>
                     </form>
                     <a class="prev button" id="prevToBasket" href="#"

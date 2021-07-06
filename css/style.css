@@ -323,7 +323,7 @@ nav ul li a {
 
 .card img {
     max-height: 90%;
-    max-width: 90%;
+    max-width: 250px;
 }
 
 .button {
@@ -366,7 +366,7 @@ select {
     cursor: pointer;
     padding-right: 0.5rem;
     position: absolute;
-    left: 50%;
+    left: 57.5%;
     top: 50%;
     margin-left: -155px;
     margin-top: -10px;
