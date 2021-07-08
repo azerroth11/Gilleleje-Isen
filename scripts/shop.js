@@ -23,7 +23,8 @@ function $(id) {
     btn.setAttribute("id", "btn-back")
     btn.innerText = "Tilføj mere !"
     btn.classList.add("button")
-    checkoutBtn.classList.add("button")
+    checkoutBtn.classList.add("button", "hidden")
+    checkoutBtn.innerText = "Tom kurv"
     basketCard.appendChild(btn)
     basketCard.appendChild(checkoutBtn)
 })()
@@ -53,6 +54,7 @@ $("btn-back").addEventListener("click", () => {
     sizeCard.classList.remove("hidden")
 })
 
+// Basket click listener
 shoppingCart.addEventListener("click", () => {
     isCard.classList.add("hidden")
     sizeCard.classList.add("hidden")
@@ -203,6 +205,7 @@ function updateBasket() {
     const mediumBasket = document.querySelector(".medium-basket")
     const largeBasket = document.querySelector(".large-basket")
     emptyBasket.classList.toggle("hidden", orderList.length != 0)
+    checkoutBtn.classList.remove("hidden")
     checkoutBtn.innerText = `Checkout: ${totalPrice()} dkk`
     showBasketLists(mediumBasket, largeBasket)
 }
@@ -261,6 +264,7 @@ function createRemoveBtn() {
         removeBtn.parentNode.remove()
         cartItemCount()
         updateBasket()
+        checkoutBtn.classList.add("hidden")
     })
     return removeBtn
 }
