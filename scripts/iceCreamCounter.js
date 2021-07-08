@@ -31,7 +31,7 @@ const tastes = [
         iceBox.appendChild(document.createElement("img"))
         const iceBoxImg = iceBox.lastChild
         iceBoxImg.className = "iceBox-img"
-        iceBoxImg.src = `/img/${e}-img.jpg`
+        iceBoxImg.src = `/Gilleleje-Isen/img/${e}-img.jpg`
         iceBox.appendChild(document.createElement("p"))
         iceBox.lastChild.className = "taste-name"
         iceBox.lastChild.innerText = `${e}`
