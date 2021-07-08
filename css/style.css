@@ -543,11 +543,14 @@ footer a {
     }
 }
 
-@media screen and (min-width: 710px) {
+@media screen and (min-width: 768px) {
     .links {
         display: flex;
-        gap: 4vw;
         font-weight: 700;
+    }
+
+    .links > * {
+        margin-left: 3.5vw;
     }
 }
 
