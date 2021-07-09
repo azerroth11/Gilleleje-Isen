@@ -4,7 +4,7 @@
 :root {
     --pink: hsl(352, 79%, 67%);
     --light-blue: hsl(202, 56%, 86%);
-    --dark-blue: hsl(196, 30%, 51%);
+    --dark-blue: hsl(204, 55%, 70%);
     --yellow: hsl(53, 100%, 94%);
     position: relative;
 }
@@ -204,7 +204,7 @@ nav ul li a {
     display: grid;
     grid-template-columns: repeat(
         auto-fit,
-        minmax(clamp(320px, 75%, 450px), 1fr)
+        minmax(clamp(320px, 75%, 500px), 1fr)
     );
 }
 
@@ -237,6 +237,15 @@ nav ul li a {
     padding: 0.5rem 1rem;
     border-radius: 5px;
     max-width: 175px;
+}
+
+/* Facebook feed */
+.fb-page {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 /* Ice Cream Counter */
@@ -508,7 +517,7 @@ select {
 /* Footer */
 footer {
     width: 100%;
-    background-color: #000;
+    background-color: var(--dark-blue);
     position: absolute;
     bottom: 0;
 }
@@ -516,12 +525,11 @@ footer {
 .footer-content {
     display: grid;
     grid-template-columns: 3.5fr 1fr;
-    /* min-height: 8vh; */
     max-width: 1440px;
     margin: 0 auto;
     padding: 1rem;
     line-height: 1rem;
-    color: grey;
+    color: #000;
 }
 
 .adress {
