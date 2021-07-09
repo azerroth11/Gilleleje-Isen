@@ -273,19 +273,11 @@ function createRemoveBtn() {
 $("pay").addEventListener("click", evt => {
     evt.preventDefault()
 
-    const person = {
-        firstName: $("fname").value,
-        lastName: $("lname").value,
-        companyName: $("company-name").value,
-        email: $("input-mail").value,
-        pickupDate: $("pickup-date").value,
-    }
-
     if (
         $("fname").checkValidity() &&
         $("lname").checkValidity() &&
         $("input-mail").checkValidity() &&
-        $("pickup-date").checkValidity()
+        $("pickupDate").checkValidity()
     ) {
         payment()
     } else {
@@ -316,6 +308,18 @@ function payment() {
         })
     }
 
+    const billingInfos = {
+        name: `${fname.value} ${lname.value}`,
+        company: $("company-name").value,
+        email: $("input-mail").value,
+        phone: $("phone").value,
+    }
+
+    const shippingInfos = {
+        name: `Afhentning: ${pickupDate.value}`,
+        company: $("commentary").value,
+    }
+
     fetch("https://api.test.scanpay.dk/v1/new", {
         method: "POST",
         headers: {
@@ -328,6 +332,8 @@ function payment() {
             language: "da", // default is 'auto', e.g. use browser language
             orderid: "1",
             items: newOrderList,
+            billing: billingInfos,
+            shipping: shippingInfos,
         }),
     })
         .then(res => res.json())
