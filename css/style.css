@@ -18,11 +18,13 @@ html {
     scroll-behavior: smooth;
     background-color: var(--light-blue);
     min-height: 100%;
+    overflow-x: hidden;
 }
 
 body {
     font-family: 'Lato', sans-serif;
     background-color: var(--yellow);
+    width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     overflow-x: hidden; /* Must keep */
