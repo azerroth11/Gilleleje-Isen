@@ -111,7 +111,7 @@ ul {
 /* Nav */
 .pre-nav-banner {
     height: 25vh;
-    background: center no-repeat url('./img/background-wide.png');
+    background: center no-repeat url('../img/background-wide.png');
     background-size: cover;
 }
 
