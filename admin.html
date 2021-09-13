@@ -8,20 +8,18 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <link rel="shortcut icon" type="image/jpg" href="./img/logo.ico" />
-    <script src="./scripts/iceCreamCounter.js" defer></script>
-    <title>Gilleleje Isen - Vores is</title>
+    <link rel="shortcut icon" type="image" href="./img/logo.ico" />
+    <!-- <script src="./scripts/shop.js" defer></script> -->
+    <title>Gilleleje Isen - Admin</title>
 
     <body>
         <nav>
             <div class="navigation">
-                <a href="index.html"><img src="./img/logo.png" alt="" /></a>
+                <a href="index.html">
+                    <img src="./img/logo.png" alt="Gilleleje Is" />
+                </a>
                 <ul class="links">
-                    <li>
-                        <a href="./vores-is.html" class="link-active"
-                            >Vores is</a
-                        >
-                    </li>
+                    <li><a href="./vores-is.html">Vores is</a></li>
                     <li><a href="./om-os.html">Om os</a></li>
                     <li><a href="./shop.html">Køb</a></li>
                 </ul>
@@ -37,16 +35,22 @@
                         ></a>
                     </li>
                     <li>
-                        <a id="shopping-cart" href="#"
-                            ><i class="fas fa-shopping-cart"
-                                ><span id="itemCount"></span></i
+                        <a id="shopping-cart" href="shop.html"
+                            ><i class="fas fa-shopping-cart"></i
                         ></a>
                     </li>
                 </ul>
             </div>
         </nav>
-
-        <div id="iceCreamCounter"></div>
+        <div class="block">
+            <div class="card basket-card">
+                <h1>Modify the list of tastes here:</h1>
+                <form id="form" action="">
+                    <label for="tastesEdit" id="tastesEdit">Smage</label>
+                    <input type="text" />
+                </form>
+            </div>
+        </div>
 
         <footer>
             <div class="footer-content">

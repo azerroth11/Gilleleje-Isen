@@ -1,4 +1,22 @@
-let strict
+// Modifiables
+let tastes = [
+    "Vanilje",
+    "Chokolade",
+    "Koldskål",
+    "Kæmpe Solbær",
+    "Lakrids",
+    "Citrontærte",
+    "Saltkaramel",
+    "Hasselnød",
+    "Ægte pistacie",
+    "Nougat",
+    "Kaffe",
+    "Kokos",
+    "Mango-Passion",
+    "Blodappelsin",
+    "Jordbær-Rabarber",
+    "Ananas",
+]
 
 // Cards
 const isCard = document.querySelector(".is-card")
@@ -27,6 +45,7 @@ function $(id) {
     checkoutBtn.innerText = "Tom kurv"
     basketCard.appendChild(btn)
     basketCard.appendChild(checkoutBtn)
+    choiceListGeneration()
 })()
 
 $("prevToShop").addEventListener("click", () => {
@@ -97,8 +116,32 @@ size.addEventListener("input", () => {
     }
 })
 
+function choiceListGeneration() {
+    const choices = [choice1, choice2, choice3, choice4, choice5]
+    let i = 0
+    choices.forEach(choice => {
+        i += 1
+        choice.appendChild(document.createElement("select"))
+        const select = choice.lastChild
+        select.name = "Smagsvariant"
+        select.id = `smagvariant${i}`
+        select.className = "select"
+        select.appendChild(document.createElement("option"))
+        select.lastChild.value = undefined
+        select.lastChild.setAttribute("selected", "")
+        select.lastChild.setAttribute("disabled", "")
+        select.lastChild.setAttribute("hidden", "")
+        select.lastChild.innerText = "Vælg smag"
+        tastes.forEach(taste => {
+            select.appendChild(document.createElement("option"))
+            select.lastChild.value = taste
+            select.lastChild.innerText = taste
+        })
+    })
+}
+
 // Adds border to undefined items
-size.addEventListener("click", evt => {
+size.addEventListener("click", () => {
     const smagVariant = document.querySelectorAll(".select")
     for (const elem of smagVariant) {
         if (elem.value === "undefined") {
@@ -110,13 +153,13 @@ size.addEventListener("click", evt => {
 })
 
 // Add to basket event
-$("add").addEventListener("click", e => {
+$("add").addEventListener("click", () => {
     const list = [
-        (smagvariant1 = $("smagsvariant1").value),
-        (smagvariant2 = $("smagsvariant2").value),
-        (smagvariant3 = $("smagsvariant3").value),
-        (smagvariant4 = $("smagsvariant4").value),
-        (smagvariant5 = $("smagsvariant5").value),
+        (smagvariant1 = $("smagvariant1").value),
+        (smagvariant2 = $("smagvariant2").value),
+        (smagvariant3 = $("smagvariant3").value),
+        (smagvariant4 = $("smagvariant4").value),
+        (smagvariant5 = $("smagvariant5").value),
     ]
     filterUndefined(list)
     if (filteredList.length > 0 && size.value !== "undefined") {
